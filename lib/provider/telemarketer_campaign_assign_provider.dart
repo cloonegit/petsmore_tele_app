@@ -1,0 +1,178 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:nrs_tele_apps/api/call_summary_api.dart';
+import 'package:nrs_tele_apps/api/telemarketer_assign.dart';
+import 'package:nrs_tele_apps/api/telemarketer_campaign_assign.dart';
+import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
+import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
+
+class TelemarketingCampaignAssignProvider extends ChangeNotifier {
+  bool isError = false;
+  bool get getIsError => isError;
+
+  bool _isFetching = false;
+  bool get isFetching => _isFetching;
+
+  String? _failure;
+  String? get failure => _failure;
+
+  String cid = '';
+  String get getCid => cid;
+
+  List outletList = [];
+  List get getOutletList => outletList;
+
+  List telemarketerList = [];
+  List get getTelemarketerList => telemarketerList;
+
+  Map responseData = {};
+  Map get getResponseData => responseData;
+
+  void _setFailure(failure) {
+    _failure = failure;
+    AppDebug().printDebug(msg: 'call summary provider failure: $failure');
+    notifyListeners();
+  }
+
+  void setFetchingState(bool value) {
+    _isFetching = value;
+    notifyListeners();
+  }
+
+  void setCID(getCid) {
+    cid = getCid;
+    AppDebug().printDebug(msg: 'CID provider: $getCid');
+    notifyListeners();
+  }
+
+  Future<void> clearData() async {
+    isError = false;
+    _isFetching = false;
+    _failure = null;
+    cid = '';
+    responseData.clear();
+
+    notifyListeners();
+  }
+
+  Future fetchOutletList({bool? isFetching}) async {
+    _setFailure(null);
+    _isFetching = isFetching ?? true;
+    // notifyListeners();
+
+    try {
+      // Check Shared Preferences first
+      // await checkSharedPrefs();
+      // If no valid data, fetch from API
+      // if (tabList.isEmpty) {
+      await fetchOutletListAPI();
+      // }
+    } catch (f) {
+      AppDebug().printDebug(msg: 'outlet list provider f: ${f}');
+      _setFailure(f);
+      // return f;
+    } finally {
+      _isFetching = false;
+      notifyListeners();
+    }
+    _setFailure(null);
+    return responseData;
+  }
+
+  Future<void> fetchOutletListAPI() async {
+    responseData = await TelemarketerCampaignAssignAPI().outletList();
+    // AppDebug().printDebug(msg: 'outlet list provider res: $responseData');
+
+    if (responseData.isNotEmpty && responseData.containsKey('LIST')) {
+      outletList = responseData['LIST'];
+      AppDebug().printDebug(msg: 'outletList: $outletList');
+    } else {
+      AppDebug().printDebug(msg: 'outlet list status 0: $responseData');
+    }
+    notifyListeners();
+  }
+
+  Future fetchTelemarketerList(String? outlet, String? campaignId,
+      {bool? isFetching}) async {
+    _setFailure(null);
+    _isFetching = isFetching ?? true;
+    // notifyListeners();
+
+    try {
+      // Check Shared Preferences first
+      // await checkSharedPrefs();
+      // If no valid data, fetch from API
+      // if (tabList.isEmpty) {
+      await fetchTelemarketerListAPI(outlet, campaignId);
+      // }
+    } catch (f) {
+      AppDebug().printDebug(msg: 'outlet list provider f: ${f}');
+      _setFailure(f);
+      // return f;
+    } finally {
+      _isFetching = false;
+      notifyListeners();
+    }
+    _setFailure(null);
+    return responseData;
+  }
+
+  Future<void> fetchTelemarketerListAPI(
+      String? outlet, String? campaignId) async {
+    String staffcode = await GetSharedPreferences().getuserCode();
+
+    responseData = await TelemarketerCampaignAssignAPI()
+        .telemarketerList(staffcode, outlet, campaignId);
+    AppDebug().printDebug(msg: 'telemarketerList provider res: $responseData');
+    var res = responseData;
+    if (responseData.isNotEmpty && res != '') {
+      telemarketerList = responseData['LIST'];
+      AppDebug().printDebug(msg: 'telemarketerList: $telemarketerList');
+    } else {
+      AppDebug().printDebug(msg: 'telemarketerList status 0: $responseData');
+    }
+    notifyListeners();
+  }
+
+  Future setTelemarketerAssign(
+      String? assign, String? outlet, String? campaignId,
+      {bool? isFetching}) async {
+    _setFailure(null);
+    _isFetching = isFetching ?? true;
+    // notifyListeners();
+
+    try {
+      // Check Shared Preferences first
+      // await checkSharedPrefs();
+      // If no valid data, fetch from API
+      // if (tabList.isEmpty) {
+      await telemarketerAssignAPI(assign, outlet, campaignId);
+      // }
+    } catch (f) {
+      AppDebug().printDebug(msg: 'outlet list provider f: ${f}');
+      _setFailure(f);
+      // return f;
+    } finally {
+      _isFetching = false;
+      notifyListeners();
+    }
+    _setFailure(null);
+    return responseData;
+  }
+
+  Future<void> telemarketerAssignAPI(
+      String? assign, String? outlet, String? campaignId) async {
+    String staffcode = await GetSharedPreferences().getuserCode();
+
+    responseData = await TelemarketerCampaignAssignAPI()
+        .telemarketerAssign(staffcode, assign, outlet, campaignId);
+    AppDebug().printDebug(msg: 'telemarketerList provider res: $responseData');
+    var res = responseData;
+    if (responseData['status'] == '1') {
+      // AppDebug().printDebug(msg: 'telemarketerList: $res');
+    } else {
+      AppDebug().printDebug(msg: 'telemarketerList status 0: $responseData');
+    }
+    notifyListeners();
+  }
+}
