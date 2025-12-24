@@ -287,17 +287,20 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                       ),
                       Row(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: Adaptive.w(6),
-                                top: Adaptive.h(2),
-                                bottom: Adaptive.h(2)),
-                            child: Text(
-                              userData['NAME']['VALUE'],
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w700),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: Adaptive.w(6),
+                                  top: Adaptive.h(2),
+                                  bottom: Adaptive.h(2)),
+                              child: Text(
+                                userData['NAME']['VALUE'],
+                                maxLines: 3,
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w700),
+                              ),
                             ),
                           ),
                         ],
