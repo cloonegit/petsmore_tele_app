@@ -49,19 +49,16 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   share_whatsapp: ^1.0.2
   # flutter_sms: ^2.3.3
-  flutter_sms:
-    git:
-      url: https://github.com/fluttercommunity/flutter_sms.git
-      ref: master
   shared_preferences: ^2.3.2
-  fluttertoast: ^8.2.8
+  fluttertoast: ^9.0.0
   background_downloader: ^8.5.5
   path_provider: ^2.1.4
-  external_path: ^2.0.1
+  external_path: ^2.2.0
   share_plus: ^10.0.2
   url_launcher: ^6.3.0
   # connectivity_plus: ^6.0.5
   get_it: ^8.0.0
+  send_message: ^1.0.2
 
 
 dev_dependencies:

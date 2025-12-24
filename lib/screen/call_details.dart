@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sms/flutter_sms.dart';
+import 'package:send_message/send_message.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
 import 'package:nrs_tele_apps/global_function/app_logout.dart';
