@@ -1,8 +1,8 @@
 import 'package:nrs_tele_apps/api/api_manager.dart';
 import 'package:nrs_tele_apps/api/global_api.dart';
 import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
-import 'package:share_whatsapp/share_whatsapp.dart';
+// import 'package:nrs_tele_apps/services/get_it.dart';
+// import 'package:share_whatsapp/share_whatsapp.dart';
 
 class CallSummaryAPI {
   Future<Map> callSummary(String? staffcode) async {

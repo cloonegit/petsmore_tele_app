@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
+// import 'dart:io';
 
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,9 +22,9 @@ import 'package:nrs_tele_apps/widgets/global_utils.dart';
 import 'package:nrs_tele_apps/widgets/separator.dart';
 import 'package:nrs_tele_apps/widgets/text_style_global.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
-import 'dart:typed_data';
+// import 'dart:typed_data';
 import 'package:image/image.dart' as img;
 
 class Setting extends ConsumerStatefulWidget {

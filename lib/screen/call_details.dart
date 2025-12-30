@@ -10,7 +10,7 @@ import 'package:nrs_tele_apps/global_function/app_logout.dart';
 import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
 import 'package:nrs_tele_apps/main.dart';
 import 'package:nrs_tele_apps/provider/bottom_nav_provider.dart';
-import 'package:nrs_tele_apps/screen/call_summary.dart';
+// import 'package:nrs_tele_apps/screen/call_summary.dart';
 import 'package:nrs_tele_apps/services/get_it.dart';
 import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
 import 'package:nrs_tele_apps/widgets/call_status_dropdown.dart';

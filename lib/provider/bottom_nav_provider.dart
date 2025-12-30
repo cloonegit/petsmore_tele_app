@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
+// import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
 
 // final bottomNavIndexProvider = StateProvider<int>((ref) => 0);
 // final bottomTabNameProvider = StateProvider<String>((ref) => '');

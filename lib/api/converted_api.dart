@@ -1,7 +1,7 @@
 import 'package:nrs_tele_apps/api/api_manager.dart';
 import 'package:nrs_tele_apps/api/global_api.dart';
 import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
+// import 'package:nrs_tele_apps/services/get_it.dart';
 
 class ConvertedAPI {
   Future<Map> outletList(String? staffcode) async {

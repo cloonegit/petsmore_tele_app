@@ -1,9 +1,9 @@
 class GlobalAPI {
   int timeout = 30;
 
-  // static String apidomain =
-  //     'https://sys.senheng.com.my/shmanagement_apps/telemarketing/';
-  static String apidomain = 'http://tele.petsmore.com.my/api';
+//   static String apidomain =
+//       'https://sys.senheng.com.my/shmanagement_apps/telemarketing/';
+  static String apidomain = 'https://tele.petsmore.com.my/api';
   String login = '$apidomain/login.php';
   String home = '$apidomain/home_3.php';
   // String notification = '$apidomain/notification.php';
