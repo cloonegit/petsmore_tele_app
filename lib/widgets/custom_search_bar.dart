@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,7 +49,7 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
           bottom: Adaptive.h(2)),
       child: TextField(
         enableInteractiveSelection: false,
-        cursorColor: Color(0xFFED1C24),
+        cursorColor: AppColors.primary,
         controller: widget.searchController,
         onChanged: (value) {
           AppDebug().printDebug(msg: 'valueee:$value');

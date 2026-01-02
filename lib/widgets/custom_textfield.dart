@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -104,7 +105,7 @@ class _CustomTextfieldState extends State<CustomTextfield>
             width: widget.width ?? Adaptive.w(90),
             child: TextFormField(
               enableInteractiveSelection: false,
-              cursorColor: Color(0xFFED1C24),
+              cursorColor: AppColors.primary,
               // autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: widget.controller,
               focusNode: widget.focusNode,
@@ -143,10 +144,10 @@ class _CustomTextfieldState extends State<CustomTextfield>
                   borderSide: BorderSide(color: Colors.grey),
                 ),
                 errorMaxLines: 6,
-                errorStyle: TextStyle(fontSize: 12.0, color: Color(0xFFED1C24)),
+                errorStyle: TextStyle(fontSize: 12.0, color: AppColors.primary),
                 floatingLabelStyle: errorMessage != null
                     ? const TextStyle(
-                        color: Color(0xFFED1C24),
+                        color: AppColors.primary,
                         fontSize: 16.0,
                       )
                     : TextStyle(
@@ -156,14 +157,14 @@ class _CustomTextfieldState extends State<CustomTextfield>
                 errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFFED1C24),
+                    color: AppColors.primary,
                     width: 1.0,
                   ),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFFED1C24),
+                    color: AppColors.primary,
                     width: 1.0,
                   ),
                 ),
@@ -217,7 +218,7 @@ class _CustomTextfieldState extends State<CustomTextfield>
                     style: const TextStyle(
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFFED1C24),
+                      color: AppColors.primary,
                       fontSize: 14.0,
                     ),
                   ),

@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -163,7 +164,7 @@ class _Converted2State extends ConsumerState<Converted2>
                       strokeWidth: 5,
                       strokeAlign: CircularProgressIndicator.strokeAlignCenter,
                       valueColor:
-                          AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                          AlwaysStoppedAnimation<Color>(AppColors.primary),
                     ),
                   )
                 : Column(
@@ -178,9 +179,9 @@ class _Converted2State extends ConsumerState<Converted2>
                           controller: _tabController,
                           tabAlignment: TabAlignment.center,
                           isScrollable: true,
-                          labelColor: const Color(0xFFED1C24),
+                          labelColor: AppColors.primary,
                           unselectedLabelColor: Colors.black,
-                          indicatorColor: const Color(0xFFED1C24),
+                          indicatorColor: AppColors.primary,
                           tabs: List.generate(tabList.length, (index) {
                             return _buildTab(tabList[index], index);
                           }),
@@ -243,7 +244,7 @@ class _Converted2State extends ConsumerState<Converted2>
           ))
         : RefreshIndicator(
             onRefresh: _refreshData,
-            color: Color(0xFFED1C24),
+            color: AppColors.primary,
             backgroundColor: Colors.white,
             child: ListView.builder(
               itemCount: custList.length,
@@ -367,7 +368,7 @@ class _Converted2State extends ConsumerState<Converted2>
           ))
         : RefreshIndicator(
             onRefresh: _refreshData,
-            color: Color(0xFFED1C24),
+            color: AppColors.primary,
             backgroundColor: Colors.white,
             child: ListView.builder(
               itemCount: approachedList.length,

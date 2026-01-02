@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -184,7 +185,7 @@ class _CampaignTelemarketerState extends ConsumerState<CampaignTelemarketer> {
               child: CircularProgressIndicator.adaptive(
                 strokeWidth: 5,
                 strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
               ),
             )
           : data.isEmpty
@@ -207,7 +208,7 @@ class _CampaignTelemarketerState extends ConsumerState<CampaignTelemarketer> {
                           bottom: Adaptive.h(2)),
                       child: TextField(
                         enableInteractiveSelection: false,
-                        cursorColor: Color(0xFFED1C24),
+                        cursorColor: AppColors.primary,
                         controller: searchController,
                         onChanged: (value) {
                           filterData(value);
@@ -296,11 +297,11 @@ class _CampaignTelemarketerState extends ConsumerState<CampaignTelemarketer> {
             // decoration: BoxDecoration(
             //   border: Border.all(
             //     color:
-            //         _selectedValue == 'Assign' ? Color(0xFFED1C24) : Colors.grey[300]!,
+            //         _selectedValue == 'Assign' ? AppColors.primary : Colors.grey[300]!,
             //   ),
             //   borderRadius: BorderRadius.circular(10.0),
             //   color: _selectedValue == 'Assign'
-            //       ? Color(0xFFED1C24).withOpacity(0.1)
+            //       ? AppColors.primary.withOpacity(0.1)
             //       : Colors.grey[300],
             //   boxShadow: [
             //     BoxShadow(
@@ -327,7 +328,7 @@ class _CampaignTelemarketerState extends ConsumerState<CampaignTelemarketer> {
                   _selectedValue = value;
                 });
               },
-              activeColor: Color(0xFFED1C24),
+              activeColor: AppColors.primary,
             ),
           ),
         ),
@@ -354,7 +355,7 @@ class _CampaignTelemarketerState extends ConsumerState<CampaignTelemarketer> {
                   _selectedValue = value;
                 });
               },
-              activeColor: Color(0xFFED1C24),
+              activeColor: AppColors.primary,
             ),
           ),
         ),

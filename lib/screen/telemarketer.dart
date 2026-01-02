@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -156,7 +157,7 @@ class _TelemarketerState extends ConsumerState<Telemarketer> {
               child: CircularProgressIndicator.adaptive(
                 strokeWidth: 5,
                 strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
               ),
             )
           : data.isEmpty
@@ -186,7 +187,7 @@ class _TelemarketerState extends ConsumerState<Telemarketer> {
                           bottom: Adaptive.h(2)),
                       child: TextField(
                         enableInteractiveSelection: false,
-                        cursorColor: Color(0xFFED1C24),
+                        cursorColor: AppColors.primary,
                         controller: searchController,
                         onChanged: (value) {
                           filterData(value);
@@ -224,7 +225,7 @@ class _TelemarketerState extends ConsumerState<Telemarketer> {
                     Expanded(
                       child: RefreshIndicator(
                         onRefresh: _refreshData,
-                        color: Color(0xFFED1C24),
+                        color: AppColors.primary,
                         backgroundColor: Colors.white,
                         child: ListView.builder(
                           itemCount: filteredData.length,

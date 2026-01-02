@@ -33,6 +33,7 @@ import 'package:nrs_tele_apps/screen/telemarketer.dart';
 import 'package:nrs_tele_apps/services/get_it.dart' as getItSetup;
 import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
 import 'package:nrs_tele_apps/widgets/bottom_navigation_bar.dart';
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 // class MyAppWithInitialRoute extends StatefulWidget {
@@ -115,18 +116,18 @@ class MyAppWithInitialRoute extends StatelessWidget {
       return MaterialApp(
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
-        title: 'Telemarketing App',
+        title: 'Petsmore Telemarketing',
         theme: ThemeData(
           // primarySwatch: Color(0xFFED1C24),
-          scaffoldBackgroundColor: Colors.grey[50],
+          scaffoldBackgroundColor: AppColors.scaffoldBackground,
           // scaffoldBackgroundColor: Colors.black,
-          primaryColor: Color(0xFFED1C24),
+          primaryColor: AppColors.primary,
           useMaterial3: true,
           checkboxTheme: CheckboxThemeData(
             fillColor: WidgetStateProperty.resolveWith<Color>(
                 (Set<WidgetState> states) {
               if (states.contains(WidgetState.selected)) {
-                return Color(0xFFED1C24);
+                return AppColors.primary;
               }
               return Colors.transparent;
             }),
@@ -139,20 +140,20 @@ class MyAppWithInitialRoute extends StatelessWidget {
             }),
           ),
           navigationBarTheme: NavigationBarThemeData(
-            indicatorColor: Color(0xFFED1C24),
+            indicatorColor: AppColors.primary,
             labelTextStyle: WidgetStateProperty.resolveWith((states) {
               if (states.contains(WidgetState.selected)) {
-                return const TextStyle(
+                return TextStyle(
                     fontSize: 10,
-                    color: Color(0xFFED1C24),
+                    color: AppColors.primary,
                     fontWeight: FontWeight.w400);
               }
               return const TextStyle(fontSize: 10, color: Colors.grey);
             }),
             iconTheme: WidgetStateProperty.resolveWith((states) {
               if (states.contains(WidgetState.selected)) {
-                return const IconThemeData(
-                  color: Color(0xFFED1C24),
+                return IconThemeData(
+                  color: AppColors.primary,
                   size: 24,
                 );
               }

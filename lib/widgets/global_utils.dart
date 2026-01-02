@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
@@ -82,11 +83,11 @@ class GlobalUtils {
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: tempSelectedValue == i.toString()
-                                        ? Color(0xFFED1C24)
+                                        ? AppColors.primary
                                         : Colors.black),
                               ),
                               trailing: tempSelectedValue == i.toString()
-                                  ? Icon(Icons.check, color: Color(0xFFED1C24))
+                                  ? Icon(Icons.check, color: AppColors.primary)
                                   : null,
                               onTap: () {
                                 setState(() {
@@ -117,7 +118,7 @@ class GlobalUtils {
                                 overlayColor: Colors.transparent,
                                 padding: EdgeInsets.symmetric(vertical: 16),
                                 backgroundColor: Colors.white,
-                                foregroundColor: Color(0xFFED1C24),
+                                foregroundColor: AppColors.primary,
                                 elevation: 0,
                               ),
                               onPressed: () {
@@ -135,7 +136,7 @@ class GlobalUtils {
                               overlayColor: Colors.transparent,
                               padding: EdgeInsets.symmetric(vertical: 16),
                               backgroundColor: Colors.white,
-                              foregroundColor: Color(0xFFED1C24),
+                              foregroundColor: AppColors.primary,
                               elevation: 0,
                             ),
                             onPressed: () {
@@ -220,7 +221,7 @@ class GlobalUtils {
               CircularProgressIndicator.adaptive(
                 strokeWidth: 5,
                 strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
               ),
               const SizedBox(width: 16),
               Text(message),

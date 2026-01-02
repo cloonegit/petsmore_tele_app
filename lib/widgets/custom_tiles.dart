@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -49,12 +50,12 @@ class _CustomTilesState extends State<CustomTiles> {
           surfaceTintColor: Colors.transparent,
           overlayColor: Colors.transparent,
           backgroundColor:
-              widget.backgroundColor ?? Color.fromARGB(255, 251, 228, 232),
+              widget.backgroundColor ?? AppColors.primaryBackgroundLight,
           shadowColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
             side: BorderSide(
-              color: widget.borderColor ?? Color(0xFFEA1C24),
+              color: widget.borderColor ?? AppColors.primary,
               width: widget.borderWidth ?? 1.0,
             ),
           ),

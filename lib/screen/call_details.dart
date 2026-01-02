@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -286,11 +287,11 @@ class _CallDetailsState extends ConsumerState<CallDetails>
               child: CircularProgressIndicator.adaptive(
                 strokeWidth: 5,
                 strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
               ),
             )
           : RefreshIndicator(
-              color: Color(0xFFED1C24),
+              color: AppColors.primary,
               backgroundColor: Colors.white,
               onRefresh: _refreshData,
               child: InkWell(
@@ -868,7 +869,7 @@ class _CallDetailsState extends ConsumerState<CallDetails>
               padding: EdgeInsets.only(left: Adaptive.w(3)),
               child: TextField(
                 enableInteractiveSelection: false,
-                cursorColor: Color(0xFFED1C24),
+                cursorColor: AppColors.primary,
                 controller: remarksController,
                 focusNode: _remarksFocusNode,
                 maxLines: null,
@@ -892,7 +893,7 @@ class _CallDetailsState extends ConsumerState<CallDetails>
           // height: Adaptive.h(5),
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
-          backgroundColor: const Color(0xFFED1C24),
+          backgroundColor: AppColors.primary,
         )
       ],
     );
@@ -1058,8 +1059,8 @@ class _CallDetailsState extends ConsumerState<CallDetails>
       children: [
         TabBar(
           indicatorSize: TabBarIndicatorSize.tab,
-          indicatorColor: const Color(0xFFED1C24),
-          labelColor: const Color(0xFFED1C24),
+          indicatorColor: AppColors.primary,
+          labelColor: AppColors.primary,
           controller: _tabController,
           tabs: const [
             Tab(

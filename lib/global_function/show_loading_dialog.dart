@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -23,7 +24,7 @@ showLoadingDialog(BuildContext context,
               CircularProgressIndicator.adaptive(
                 strokeWidth: 5,
                 strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
               ),
               if (text != null && text.isNotEmpty) ...[
                 SizedBox(height: 16),

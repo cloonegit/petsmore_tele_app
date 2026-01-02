@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:nrs_tele_apps/screen/notification.dart';
 
@@ -33,7 +34,7 @@ class _AppbarState extends State<Appbar> {
     return AppBar(
         toolbarHeight: 60,
         automaticallyImplyLeading: widget.automaticallyImplyLeading ?? true,
-        backgroundColor: const Color(0xFFED1C24),
+        backgroundColor: AppColors.primary,
         title: Text(
           widget.title,
           overflow: TextOverflow.ellipsis,

@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -152,7 +153,7 @@ class _OutletState extends ConsumerState<Outlet> {
                 child: CircularProgressIndicator.adaptive(
                   strokeWidth: 5,
                   strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                 ),
               )
             : data.isEmpty
@@ -175,7 +176,7 @@ class _OutletState extends ConsumerState<Outlet> {
                             bottom: Adaptive.h(2)),
                         child: TextField(
                           enableInteractiveSelection: false,
-                          cursorColor: Color(0xFFED1C24),
+                          cursorColor: AppColors.primary,
                           controller: searchController,
                           onChanged: (value) {
                             setState(() {
@@ -242,7 +243,7 @@ class _OutletState extends ConsumerState<Outlet> {
 
     return RefreshIndicator(
       onRefresh: _refreshData,
-      color: Color(0xFFED1C24),
+      color: AppColors.primary,
       backgroundColor: Colors.white,
       child: ListView.builder(
         itemCount: filteredData.length,
@@ -268,7 +269,7 @@ class _OutletState extends ConsumerState<Outlet> {
                   padding: EdgeInsets.symmetric(vertical: Adaptive.h(1)),
                   width: Adaptive.w(50),
                   decoration: BoxDecoration(
-                    color: Color(0xFFED1C24),
+                    color: AppColors.primary,
                     borderRadius: BorderRadius.circular(12.0),
                     border: Border.all(color: Colors.transparent),
                   ),

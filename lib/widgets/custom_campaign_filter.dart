@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -75,7 +76,7 @@ class _CustomCampaignFilterState extends ConsumerState<CustomCampaignFilter> {
           child: CircularProgressIndicator.adaptive(
             strokeWidth: 5,
             strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
           ),
         );
       }

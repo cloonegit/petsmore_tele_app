@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:nrs_tele_apps/screen/login.dart';
 import 'package:nrs_tele_apps/widgets/custom_container.dart';
@@ -22,14 +23,14 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
       child: Stack(
         children: [
           Container(
-            color: const Color(0xFFEA1C24),
+            color: AppColors.primary,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: Adaptive.w(7)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: Adaptive.h(15)),
-                  _buildText('SENHENG'),
+                  _buildText('PETSMORE'),
                   _buildText('CRM'),
                   _buildText('TELEMARKETING'),
                   _buildText('APP'),

@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,7 +50,7 @@ class _RemarksTabState extends ConsumerState<RemarksTab> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: Color(0xFFF9DADB)),
+              border: Border.all(color: AppColors.primaryBackground),
             ),
             child: Column(
               children: [

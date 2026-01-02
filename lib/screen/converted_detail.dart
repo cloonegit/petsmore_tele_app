@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -124,7 +125,7 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
               child: CircularProgressIndicator.adaptive(
                 strokeWidth: 5,
                 strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
               ),
             )
           : approachedDetails.isEmpty
@@ -138,7 +139,7 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
                   ),
                 ))
               : RefreshIndicator(
-                  color: Color(0xFFED1C24),
+                  color: AppColors.primary,
                   backgroundColor: Colors.white,
                   onRefresh: _refreshData,
                   child: SingleChildScrollView(
@@ -319,7 +320,7 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
                                     // Submit Button
                                     CustomContainer(
                                         backgroundColor:
-                                            const Color(0xFFEA1C24),
+                                            AppColors.primary,
                                         color: Colors.white,
                                         height: Adaptive.h(5),
                                         width: Adaptive.w(88),
@@ -424,7 +425,7 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
           Container(
             width: 4,
             height: 24,
-            color: Color(0xFFED1C24),
+            color: AppColors.primary,
           ),
           const SizedBox(width: 8),
           Text(
@@ -463,7 +464,7 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
         controller: controller,
         maxLines: null,
         expands: true,
-        cursorColor: Color(0xFFED1C24),
+        cursorColor: AppColors.primary,
         style: TextStyle(fontStyle: FontStyle.normal),
         readOnly: isTele ? true : false,
         decoration: InputDecoration(
@@ -493,12 +494,12 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
           decoration: BoxDecoration(
             border: Border.all(
               color: _selectedValue == 'SON'
-                  ? Color(0xFFED1C24)
+                  ? AppColors.primary
                   : Colors.grey[300]!,
             ),
             borderRadius: BorderRadius.circular(10.0),
             color: _selectedValue == 'SON'
-                ? Color(0xFFED1C24).withOpacity(0.1)
+                ? AppColors.primary.withOpacity(0.1)
                 : Colors.grey[300],
             boxShadow: [
               BoxShadow(
@@ -518,7 +519,7 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
                 _selectedValue = value;
               });
             },
-            activeColor: Color(0xFFED1C24),
+            activeColor: AppColors.primary,
           ),
         ),
         SizedBox(
@@ -528,12 +529,12 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
           decoration: BoxDecoration(
             border: Border.all(
               color: _selectedValue == 'SCS'
-                  ? Color(0xFFED1C24)
+                  ? AppColors.primary
                   : Colors.grey[300]!,
             ),
             borderRadius: BorderRadius.circular(10.0),
             color: _selectedValue == 'SCS'
-                ? Color(0xFFED1C24).withOpacity(0.1)
+                ? AppColors.primary.withOpacity(0.1)
                 : Colors.grey[300],
             boxShadow: [
               BoxShadow(
@@ -553,7 +554,7 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
                 _selectedValue = value;
               });
             },
-            activeColor: Color(0xFFED1C24),
+            activeColor: AppColors.primary,
           ),
         ),
       ],

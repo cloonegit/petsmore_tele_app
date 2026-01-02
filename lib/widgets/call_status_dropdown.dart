@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,7 @@ class _CallStatusDropdownState extends ConsumerState<CallStatusDropdown> {
         child: CircularProgressIndicator.adaptive(
           strokeWidth: 5,
           strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+          valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
         ),
       );
     if (teleproductData.isEmpty)
@@ -240,7 +241,7 @@ class _CallStatusDropdownState extends ConsumerState<CallStatusDropdown> {
                             title: Text(product['name'] ?? ''),
                             value: product['param'] ?? '',
                             groupValue: selectedMakePurchaseProduct,
-                            activeColor: Color(0xFFED1C24),
+                            activeColor: AppColors.primary,
                             onChanged: (String? value) {
                               ref
                                   .read(callSummaryDetailProvider)
@@ -334,11 +335,11 @@ class _CallStatusDropdownState extends ConsumerState<CallStatusDropdown> {
                             items[i],
                             style: TextStyle(
                                 color: selectedValue == items[i]
-                                    ? Color(0xFFED1C24)
+                                    ? AppColors.primary
                                     : Colors.black),
                           ),
                           trailing: selectedValue == items[i]
-                              ? Icon(Icons.check, color: Color(0xFFED1C24))
+                              ? Icon(Icons.check, color: AppColors.primary)
                               : null,
                           onTap: () {
                             setState(() {
@@ -367,7 +368,7 @@ class _CallStatusDropdownState extends ConsumerState<CallStatusDropdown> {
                                 overlayColor: Colors.transparent,
                                 padding: EdgeInsets.symmetric(vertical: 16),
                                 backgroundColor: Colors.white,
-                                foregroundColor: Color(0xFFED1C24),
+                                foregroundColor: AppColors.primary,
                                 elevation: 0,
                               ),
                               onPressed: () {
@@ -385,7 +386,7 @@ class _CallStatusDropdownState extends ConsumerState<CallStatusDropdown> {
                               overlayColor: Colors.transparent,
                               padding: EdgeInsets.symmetric(vertical: 16),
                               backgroundColor: Colors.white,
-                              foregroundColor: Color(0xFFED1C24),
+                              foregroundColor: AppColors.primary,
                               elevation: 0,
                             ),
                             onPressed: () {

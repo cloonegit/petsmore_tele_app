@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -9,7 +10,7 @@ class TextStyleGlobal {
   TextStyle btnTextRed = const TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w800,
-    color: Color(0xFFE12D2E),
+    color: AppColors.primary,
   );
   TextStyle btnTextWeb = const TextStyle(
       fontSize: 15, fontWeight: FontWeight.w800, color: Colors.white);
@@ -18,7 +19,7 @@ class TextStyleGlobal {
   TextStyle btnTextRedWeb = const TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w800,
-    color: Color(0xFFE12D2E),
+    color: AppColors.primary,
   );
   TextStyle cResponsive(context, fontSize, color, fontWeight, fontStyle) =>
       TextStyle(

@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -114,7 +115,7 @@ class _BusinessCardModalState extends ConsumerState<BusinessCardModal> {
                     },
                     title: 'SHARE TO CUSTOMER',
                     color: Colors.white,
-                    backgroundColor: Color(0xFFED1C24),
+                    backgroundColor: AppColors.primary,
                     width: Adaptive.w(70),
                     borderRadius: BorderRadius.circular(5),
                   )),

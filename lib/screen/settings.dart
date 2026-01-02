@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'dart:convert';
 // import 'dart:io';
 
@@ -195,11 +196,11 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                 child: CircularProgressIndicator.adaptive(
                   strokeWidth: 5,
                   strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                 ),
               )
             : RefreshIndicator(
-                color: Color(0xFFED1C24),
+                color: AppColors.primary,
                 backgroundColor: Colors.white,
                 onRefresh: _refreshData,
                 child: SingleChildScrollView(
@@ -251,7 +252,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                                       ),
                                       child: const Icon(
                                         Icons.edit,
-                                        color: Color(0xFFED1C24),
+                                        color: AppColors.primary,
                                         size: 18,
                                       ),
                                     ),
@@ -275,8 +276,8 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                               titleSize: 12,
                               height: Adaptive.h(5),
                               width: Adaptive.w(30),
-                              color: Color(0xFFED1C24),
-                              backgroundColor: Color(0xFFF9DADB),
+                              color: AppColors.primary,
+                              backgroundColor: AppColors.primaryBackground,
                               fontWeight: FontWeight.w600,
                               borderSide: Colors.transparent,
                               borderRadius: BorderRadius.circular(30),
@@ -401,7 +402,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                 'Version : $appVersion.$buildNumber',
                 style: const TextStyle(
                     fontFamily: 'Poppins',
-                    color: Color(0xFFEA1C24),
+                    color: AppColors.primary,
                     fontSize: 16,
                     fontWeight: FontWeight.w600),
               ),
@@ -417,7 +418,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                 },
                 title: 'LOGOUT',
                 color: Colors.white,
-                backgroundColor: Color(0xFFED1C24),
+                backgroundColor: AppColors.primary,
                 width: Adaptive.w(90),
                 borderRadius: BorderRadius.circular(5),
               ),
@@ -459,13 +460,13 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFED1C24)),
+                        borderSide: BorderSide(color: AppColors.primary),
                       ),
                     ),
                     enableInteractiveSelection: false,
                     keyboardType: TextInputType.phone,
                     showCursor: true,
-                    cursorColor: Color(0xFFED1C24),
+                    cursorColor: AppColors.primary,
                     controller: controller,
                     textAlign: TextAlign.end,
                     maxLines: null,

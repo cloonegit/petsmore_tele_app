@@ -9,13 +9,11 @@ class UserLogin {
   Future<String> getUserLogin(BuildContext context, WidgetRef ref) async {
     String userLogin = await GetSharedPreferences().getUserPosition();
     AppDebug().printDebug(msg: 'userlogin:$userLogin');
-
     if (userLogin.isEmpty || userLogin == "") {
       await AppLogout().logout(context, ref);
       showCustomDialog(
           context, '', 'User login not found, Please re-login.', 'OK', () {});
     }
-
     return userLogin;
   }
 }

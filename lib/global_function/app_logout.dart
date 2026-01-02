@@ -5,7 +5,6 @@ import 'package:nrs_tele_apps/main.dart';
 
 import 'package:nrs_tele_apps/screen/login.dart';
 import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
-
 class AppLogout {
   logout(BuildContext context, WidgetRef ref) async {
     await GetSharedPreferences().clearAllData();
@@ -15,7 +14,6 @@ class AppLogout {
     await ref.read(homeProvider).clearData();
     await ref.read(loginProvider).clearData();
     await ref.read(settingProvider).clearData();
-
     String userLogin = await GetSharedPreferences().getUserPosition();
     AppDebug().printDebug(msg: 'userLogin in logout:$userLogin');
     // Navigator.popAndPushNamed(context, '/login');

@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -189,7 +190,7 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                     strokeWidth: 5,
                     strokeAlign: CircularProgressIndicator.strokeAlignCenter,
                     valueColor:
-                        AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                        AlwaysStoppedAnimation<Color>(AppColors.primary),
                   ),
                 );
               } else {
@@ -203,9 +204,9 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                         controller: _tabController,
                         tabAlignment: TabAlignment.center,
                         isScrollable: true,
-                        labelColor: const Color(0xFFED1C24),
+                        labelColor: AppColors.primary,
                         unselectedLabelColor: Colors.black,
-                        indicatorColor: const Color(0xFFED1C24),
+                        indicatorColor: AppColors.primary,
                         tabs: List.generate(tabList.length, (index) {
                           return Padding(
                             padding: tabList[index]['NAME'] == "ALL"
@@ -284,7 +285,7 @@ class _CallSummaryState extends ConsumerState<CallSummary>
     }
     return RefreshIndicator(
       onRefresh: _refreshData,
-      color: Color(0xFFED1C24),
+      color: AppColors.primary,
       backgroundColor: Colors.white,
       child: ListView.builder(
         itemCount: filteredList.length,
@@ -411,7 +412,7 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                                     ? currentItem['CALL_STATUS'] ?? ''
                                     : '',
                                 style: TextStyle(
-                                    color: Color(0xFFED1C24),
+                                    color: AppColors.primary,
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w500,
                                     fontSize: 11),
@@ -427,7 +428,7 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                                     style: TextStyle(
                                         fontFamily: 'Poppins',
                                         fontSize: 12,
-                                        color: Color(0xFFED1C24),
+                                        color: AppColors.primary,
                                         fontStyle: FontStyle.italic),
                                   )
                                 ],

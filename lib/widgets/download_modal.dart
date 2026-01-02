@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -261,7 +262,7 @@ class _DownloadModalState extends ConsumerState<DownloadModal> {
                 ? Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Color(0xFFED1C24),
+                      color: AppColors.primary,
                     ),
                     width: Adaptive.w(60),
                     child: Center(
@@ -288,7 +289,7 @@ class _DownloadModalState extends ConsumerState<DownloadModal> {
                     },
                     title: 'DOWNLOAD',
                     color: Colors.white,
-                    backgroundColor: Color(0xFFED1C24),
+                    backgroundColor: AppColors.primary,
                     width: Adaptive.w(60),
                     borderRadius: BorderRadius.circular(5),
                   ),

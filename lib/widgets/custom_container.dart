@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -47,7 +48,7 @@ class _CustomContainerState extends State<CustomContainer> {
             shadowColor: Colors.transparent,
             surfaceTintColor: Colors.transparent,
             overlayColor: Colors.transparent,
-            side: BorderSide(color: widget.borderSide ?? Color(0xFFED1C24)),
+            side: BorderSide(color: widget.borderSide ?? AppColors.primary),
             backgroundColor: widget.backgroundColor ?? Color(0xFF019949),
             shape: RoundedRectangleBorder(
               borderRadius: widget.borderRadius ?? BorderRadius.circular(3),
@@ -62,7 +63,7 @@ class _CustomContainerState extends State<CustomContainer> {
                       strokeWidth: 5,
                       strokeAlign: CircularProgressIndicator.strokeAlignCenter,
                       valueColor:
-                          AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                          AlwaysStoppedAnimation<Color>(AppColors.primary),
                     ),
                   ),
                 )

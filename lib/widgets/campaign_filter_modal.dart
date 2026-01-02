@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -89,7 +90,7 @@ class _CampaignFilterModalState extends ConsumerState<CampaignFilterModal> {
                     strokeWidth: 5,
                     strokeAlign: CircularProgressIndicator.strokeAlignCenter,
                     valueColor:
-                        AlwaysStoppedAnimation<Color>(Color(0xFFED1C24)),
+                        AlwaysStoppedAnimation<Color>(AppColors.primary),
                   ),
                 );
               } else
@@ -121,7 +122,7 @@ class _CampaignFilterModalState extends ConsumerState<CampaignFilterModal> {
                               borderRadius: BorderRadius.circular(12.0),
                               border: Border.all(
                                 color: _selectedIndex == index
-                                    ? Color(0xFFED1C24)
+                                    ? AppColors.primary
                                     : Colors.grey,
                               ),
                             ),
@@ -136,7 +137,7 @@ class _CampaignFilterModalState extends ConsumerState<CampaignFilterModal> {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: _selectedIndex == index
-                                      ? Color(0xFFED1C24)
+                                      ? AppColors.primary
                                       : Colors.black,
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w500,
@@ -158,7 +159,7 @@ class _CampaignFilterModalState extends ConsumerState<CampaignFilterModal> {
                 },
                 width: Adaptive.w(70),
                 // height: Adaptive.h(5),
-                color: const Color(0xFFED1C24),
+                color: AppColors.primary,
                 backgroundColor: Colors.white,
                 borderRadius: BorderRadius.circular(5),
                 title: 'CANCEL'),
@@ -173,7 +174,7 @@ class _CampaignFilterModalState extends ConsumerState<CampaignFilterModal> {
                 width: Adaptive.w(70),
                 // height: Adaptive.h(5),
                 color: Colors.white,
-                backgroundColor: Color(0xFFED1C24),
+                backgroundColor: AppColors.primary,
                 borderRadius: BorderRadius.circular(5),
                 title: 'FILTER'),
             SizedBox(height: Adaptive.h(2)),

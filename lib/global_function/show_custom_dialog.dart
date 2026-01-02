@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:nrs_tele_apps/services/get_it.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -80,7 +81,7 @@ void showCustomDialog(
                                     overlayColor: Colors.transparent,
                                     padding: EdgeInsets.symmetric(vertical: 16),
                                     backgroundColor: Colors.white,
-                                    foregroundColor: Color(0xFFED1C24),
+                                    foregroundColor: AppColors.primary,
                                     elevation: 0,
                                   ),
                                   onPressed: () {
@@ -103,7 +104,7 @@ void showCustomDialog(
                                   overlayColor: Colors.transparent,
                                   padding: EdgeInsets.symmetric(vertical: 16),
                                   backgroundColor: Colors.white,
-                                  foregroundColor: Color(0xFFED1C24),
+                                  foregroundColor: AppColors.primary,
                                   elevation: 0,
                                 ),
                                 onPressed: () {
@@ -138,7 +139,7 @@ void showCustomDialog(
                                   overlayColor: Colors.transparent,
                                   padding: EdgeInsets.symmetric(vertical: 0),
                                   backgroundColor: Colors.white,
-                                  foregroundColor: Color(0xFFED1C24),
+                                  foregroundColor: AppColors.primary,
                                   elevation: 0,
                                 ),
                                 onPressed: () {
@@ -243,7 +244,7 @@ void showCustomDialog(
 //                                 style: ElevatedButton.styleFrom(
 //                                   padding: EdgeInsets.symmetric(vertical: 16),
 //                                   backgroundColor: Colors.white,
-//                                   foregroundColor: Color(0xFFED1C24),
+//                                   foregroundColor: AppColors.primary,
 //                                   elevation: 0,
 //                                 ),
 //                                 onPressed: () {
@@ -262,7 +263,7 @@ void showCustomDialog(
 //                               style: ElevatedButton.styleFrom(
 //                                 padding: EdgeInsets.symmetric(vertical: 16),
 //                                 backgroundColor: Colors.white,
-//                                 foregroundColor: Color(0xFFED1C24),
+//                                 foregroundColor: AppColors.primary,
 //                                 elevation: 0,
 //                               ),
 //                               onPressed: () {
@@ -293,7 +294,7 @@ void showCustomDialog(
 //                               style: ElevatedButton.styleFrom(
 //                                 padding: EdgeInsets.symmetric(vertical: 0),
 //                                 backgroundColor: Colors.white,
-//                                 foregroundColor: Color(0xFFED1C24),
+//                                 foregroundColor: AppColors.primary,
 //                                 elevation: 0,
 //                               ),
 //                               onPressed: () {

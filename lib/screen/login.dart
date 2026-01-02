@@ -1,3 +1,4 @@
+import 'package:nrs_tele_apps/config/global.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -280,7 +281,7 @@ class _LoginState extends ConsumerState<Login> {
                     Padding(
                       padding: EdgeInsets.only(left: Adaptive.w(6)),
                       child: CustomContainer(
-                          backgroundColor: const Color(0xFFEA1C24),
+                          backgroundColor: AppColors.primary,
                           color: Colors.white,
                           // height: Adaptive.h(6),
                           width: Adaptive.w(88),
@@ -307,7 +308,7 @@ class _LoginState extends ConsumerState<Login> {
                 'Version : $appVersion.$buildNumber',
                 style: const TextStyle(
                     fontFamily: 'Poppins',
-                    color: Color(0xFFEA1C24),
+                    color: AppColors.primary,
                     fontSize: 16,
                     fontWeight: FontWeight.w600),
               ),
