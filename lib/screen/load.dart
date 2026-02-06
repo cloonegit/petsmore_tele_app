@@ -2,15 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/global_function/app_logout.dart';
-import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/screen/home.dart';
-import 'package:nrs_tele_apps/screen/splash.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
-import 'package:nrs_tele_apps/widgets/bottom_navigation_bar.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/app_logout.dart';
+import 'package:petsmore_tele_app/global_function/show_custom_dialog.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/screen/home.dart';
+import 'package:petsmore_tele_app/screen/splash.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/widgets/bottom_navigation_bar.dart';
 
 class Load extends ConsumerStatefulWidget {
   const Load({super.key});

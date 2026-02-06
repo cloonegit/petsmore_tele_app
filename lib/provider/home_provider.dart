@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/api/home_api.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/global_function/app_logout.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
-import 'package:nrs_tele_apps/widgets/dialog_global.dart';
-import 'package:nrs_tele_apps/widgets/global_utils.dart';
+import 'package:petsmore_tele_app/api/home_api.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/app_logout.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/widgets/dialog_global.dart';
+import 'package:petsmore_tele_app/widgets/global_utils.dart';
 
 class HomeProvider extends ChangeNotifier {
   bool isError = false;
@@ -95,7 +95,7 @@ class HomeProvider extends ChangeNotifier {
     responseData = await HomeAPI().home(staffcode);
     AppDebug().printDebug(msg: 'home provider res: $responseData');
 
-    if (responseData['status'] == '1') {
+    if (responseData != null && responseData.isNotEmpty && responseData['status'] == '1') {
       // Process and save data
       listTitle = responseData['LIST_TITLE'] ?? '';
       campaignTitle = responseData['CAMPAIGN_TITLE'] ?? '';

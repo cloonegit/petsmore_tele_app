@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nrs_tele_apps/widgets/appbar.dart';
+import 'package:petsmore_tele_app/widgets/appbar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Notifications extends StatefulWidget {

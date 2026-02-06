@@ -1,10 +1,10 @@
 // import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:nrs_tele_apps/api/call_summary_api.dart';
-// import 'package:nrs_tele_apps/api/home_api.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/api/call_summary_api.dart';
+// import 'package:petsmore_tele_app/api/home_api.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
 
 class CallSummaryDetailProvider extends ChangeNotifier {
   bool isError = false;
@@ -209,10 +209,10 @@ class CallSummaryDetailProvider extends ChangeNotifier {
 
     responseData =
         await CallSummaryAPI().callSummaryDetail(staffcode, platformType, cid);
-    AppDebug()
-        .printDebug(msg: 'call summary detail provider res: $responseData');
-
-    if (responseData.isNotEmpty && responseData.containsKey('INFO')) {
+    AppDebug();
+    if (responseData != null &&
+        responseData.isNotEmpty &&
+        responseData.containsKey('INFO')) {
       if (_isSubmitRemark) {
         remarks = responseData['REMARK'] ?? [];
         return;
@@ -281,7 +281,9 @@ class CallSummaryDetailProvider extends ChangeNotifier {
     }
     AppDebug().printDebug(msg: 'business card provider res: $responseData');
 
-    if (responseData['status'] == '1') {
+    if (responseData != null &&
+        responseData.isNotEmpty &&
+        responseData['status'] == '1') {
       businessCard = responseData['images'];
     } else {
       AppDebug()
@@ -320,7 +322,9 @@ class CallSummaryDetailProvider extends ChangeNotifier {
     }
     AppDebug().printDebug(msg: 'whatsapp provider res: $responseData');
 
-    if (responseData['status'] == '1') {
+    if (responseData != null &&
+        responseData.isNotEmpty &&
+        responseData['status'] == '1') {
       if (responseData.containsKey('list') &&
           responseData['list'] is List &&
           responseData['list'].isNotEmpty) {
@@ -381,7 +385,9 @@ class CallSummaryDetailProvider extends ChangeNotifier {
       AppDebug().printDebug(msg: 'cid is emtpy in submit remarks API: ');
     }
 
-    if (responseData['status'] == '1') {
+    if (responseData != null &&
+        responseData.isNotEmpty &&
+        responseData['status'] == '1') {
       //success submit remarks
     } else {
       AppDebug()
@@ -425,9 +431,9 @@ class CallSummaryDetailProvider extends ChangeNotifier {
       AppDebug().printDebug(msg: 'cid is emtpy in submit remarks API: ');
     }
 
-    if (responseData['status'] == '1') {
-      AppDebug()
-          .printDebug(msg: 'submit wa  provider res status 1: $responseData');
+    if (responseData != null &&
+        responseData.isNotEmpty &&
+        responseData['status'] == '1') {
     } else {
       AppDebug()
           .printDebug(msg: 'submit remarks provider status 0: $responseData');
@@ -460,7 +466,9 @@ class CallSummaryDetailProvider extends ChangeNotifier {
   ) async {
     responseData = await CallSummaryAPI().smsLog(number, msg);
 
-    if (responseData['status'] == '1') {
+    if (responseData != null &&
+        responseData.isNotEmpty &&
+        responseData['status'] == '1') {
       AppDebug()
           .printDebug(msg: 'submit sms  provider res status 1: $responseData');
     } else {

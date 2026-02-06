@@ -1,36 +1,36 @@
 Analyzing petsmore_tele_app...                                  
 
 warning • The include file 'package:flutter_lints/flutter.yaml' in '/Users/osmojave/Documents/Git Najmi/petsmore_tele_app/analysis_options.yaml' can't be found when analyzing '/Users/osmojave/Documents/Git Najmi/petsmore_tele_app' • analysis_options.yaml:10:10 • include_file_not_found
-warning • Unused import: 'package:nrs_tele_apps/services/get_it.dart' • lib/api/home_api.dart:4:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/services/get_it.dart' • lib/api/home_api.dart:4:8 • unused_import
 warning • Unused import: 'dart:io' • lib/api/login_api.dart:2:8 • unused_import
 warning • Unused import: 'package:flutter_riverpod/flutter_riverpod.dart' • lib/api/login_api.dart:4:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/main.dart' • lib/api/login_api.dart:8:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/services/get_it.dart' • lib/api/login_api.dart:9:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/main.dart' • lib/api/login_api.dart:8:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/services/get_it.dart' • lib/api/login_api.dart:9:8 • unused_import
 warning • Unused import: 'dart:io' • lib/api/settings_api.dart:2:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/services/get_it.dart' • lib/api/settings_api.dart:7:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/services/get_it.dart' • lib/api/telemarketer_assign.dart:4:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/services/get_sharedpreferences.dart' • lib/provider/bottom_nav_provider.dart:2:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/services/get_it.dart' • lib/api/settings_api.dart:7:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/services/get_it.dart' • lib/api/telemarketer_assign.dart:4:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/services/get_sharedpreferences.dart' • lib/provider/bottom_nav_provider.dart:2:8 • unused_import
 warning • Unused import: 'dart:convert' • lib/provider/call_summary_detail_provider.dart:1:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/api/home_api.dart' • lib/provider/call_summary_detail_provider.dart:5:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/api/home_api.dart' • lib/provider/call_summary_detail_provider.dart:5:8 • unused_import
 warning • Unused import: 'dart:convert' • lib/provider/call_summary_provider.dart:1:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/api/home_api.dart' • lib/provider/call_summary_provider.dart:5:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/api/home_api.dart' • lib/provider/call_summary_provider.dart:5:8 • unused_import
 warning • Unused import: 'dart:convert' • lib/provider/converted_provider.dart:1:8 • unused_import
 warning • Unused import: 'dart:convert' • lib/provider/get_campaign_provider.dart:1:8 • unused_import
 warning • Unused import: 'dart:convert' • lib/provider/home_provider.dart:1:8 • unused_import
    info • The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/cupertino.dart' • lib/provider/home_provider.dart:4:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/global_function/app_logout.dart' • lib/provider/home_provider.dart:9:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/widgets/dialog_global.dart' • lib/provider/home_provider.dart:11:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/widgets/global_utils.dart' • lib/provider/home_provider.dart:12:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/global_function/app_logout.dart' • lib/provider/home_provider.dart:9:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/widgets/dialog_global.dart' • lib/provider/home_provider.dart:11:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/widgets/global_utils.dart' • lib/provider/home_provider.dart:12:8 • unused_import
 warning • Unused import: 'dart:convert' • lib/provider/setting_provider.dart:1:8 • unused_import
 warning • Unused import: 'dart:convert' • lib/provider/telemarketer_campaign_assign_provider.dart:1:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/api/call_summary_api.dart' • lib/provider/telemarketer_campaign_assign_provider.dart:3:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/api/telemarketer_assign.dart' • lib/provider/telemarketer_campaign_assign_provider.dart:4:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/api/call_summary_api.dart' • lib/provider/telemarketer_campaign_assign_provider.dart:3:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/api/telemarketer_assign.dart' • lib/provider/telemarketer_campaign_assign_provider.dart:4:8 • unused_import
 warning • The value of the local variable 'res' isn't used • lib/provider/telemarketer_campaign_assign_provider.dart:170:9 • unused_local_variable
 warning • Unused import: 'dart:convert' • lib/provider/telemarketing_assign_provider.dart:1:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/api/call_summary_api.dart' • lib/provider/telemarketing_assign_provider.dart:4:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/api/call_summary_api.dart' • lib/provider/telemarketing_assign_provider.dart:4:8 • unused_import
 warning • The value of the local variable 'res' isn't used • lib/provider/telemarketing_assign_provider.dart:169:9 • unused_local_variable
    info • The import of 'package:flutter/widgets.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/call_details.dart:4:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/screen/call_summary.dart' • lib/screen/call_details.dart:13:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/screen/call_summary.dart' • lib/screen/call_details.dart:13:8 • unused_import
 warning • The declaration '_checkInstalledWhatsApp' isn't referenced • lib/screen/call_details.dart:239:16 • unused_element
    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screen/call_details.dart:316:54 • deprecated_member_use
    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screen/call_details.dart:382:50 • deprecated_member_use
@@ -40,19 +40,19 @@ warning • Unused import: 'package:flutter/foundation.dart' • lib/screen/call
    info • 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre • lib/screen/call_summary.dart:175:9 • deprecated_member_use
    info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/campaign.dart:1:8 • unnecessary_import
    info • The import of 'package:flutter/widgets.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/campaign.dart:3:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/screen/telemarketer.dart' • lib/screen/campaign.dart:12:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/screen/telemarketer.dart' • lib/screen/campaign.dart:12:8 • unused_import
 warning • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: Campaign.outlet • lib/screen/campaign.dart:19:7 • must_be_immutable
    info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/campaign_telemarketer.dart:1:8 • unnecessary_import
    info • The import of 'package:flutter/widgets.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/campaign_telemarketer.dart:3:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/screen/campaign.dart' • lib/screen/campaign_telemarketer.dart:11:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/screen/campaign.dart' • lib/screen/campaign_telemarketer.dart:11:8 • unused_import
 warning • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: CampaignTelemarketer.campaignId, CampaignTelemarketer.campaignName, CampaignTelemarketer.outlet • lib/screen/campaign_telemarketer.dart:18:7 • must_be_immutable
    info • 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screen/campaign_telemarketer.dart:323:15 • deprecated_member_use
    info • 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screen/campaign_telemarketer.dart:324:15 • deprecated_member_use
    info • 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screen/campaign_telemarketer.dart:350:15 • deprecated_member_use
    info • 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screen/campaign_telemarketer.dart:351:15 • deprecated_member_use
    info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/converted.dart:1:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/screen/telemarketer.dart' • lib/screen/converted.dart:10:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/widgets/custom_search_bar.dart' • lib/screen/converted.dart:13:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/screen/telemarketer.dart' • lib/screen/converted.dart:10:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/widgets/custom_search_bar.dart' • lib/screen/converted.dart:13:8 • unused_import
    info • 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre • lib/screen/converted.dart:148:7 • deprecated_member_use
    info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/converted2.dart:1:8 • unnecessary_import
 warning • The value of the local variable 'currentID' isn't used • lib/screen/converted2.dart:376:24 • unused_local_variable
@@ -70,19 +70,19 @@ warning • The value of the local variable 'currentID' isn't used • lib/scree
    info • 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screen/converted_detail.dart:551:13 • deprecated_member_use
 warning • The value of the local variable 'selectedSMSValue' isn't used • lib/screen/converted_detail.dart:625:13 • unused_local_variable
    info • The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/home.dart:1:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/widgets/bottom_navigation_bar.dart' • lib/screen/home.dart:14:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/widgets/bottom_navigation_bar.dart' • lib/screen/home.dart:14:8 • unused_import
    info • 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre • lib/screen/home.dart:126:7 • deprecated_member_use
-warning • Unused import: 'package:nrs_tele_apps/main.dart' • lib/screen/load.dart:8:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/main.dart' • lib/screen/load.dart:8:8 • unused_import
 warning • Unused import: 'dart:convert' • lib/screen/login.dart:1:8 • unused_import
    info • The import of 'package:flutter/rendering.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/login.dart:4:8 • unnecessary_import
    info • The import of 'package:flutter/widgets.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/login.dart:5:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/widgets/dialog_global.dart' • lib/screen/login.dart:20:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/widgets/dialog_global.dart' • lib/screen/login.dart:20:8 • unused_import
    info • 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre • lib/screen/login.dart:139:7 • deprecated_member_use
    info • The import of 'package:flutter/widgets.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/notification.dart:2:8 • unnecessary_import
    info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/outlet.dart:1:8 • unnecessary_import
    info • 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre • lib/screen/outlet.dart:145:7 • deprecated_member_use
 warning • Unused import: 'package:flutter/foundation.dart' • lib/screen/remarks_tab.dart:1:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/provider/call_summary_detail_provider.dart' • lib/screen/remarks_tab.dart:6:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/provider/call_summary_detail_provider.dart' • lib/screen/remarks_tab.dart:6:8 • unused_import
 warning • Unused import: 'dart:io' • lib/screen/settings.dart:2:8 • unused_import
    info • The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart' • lib/screen/settings.dart:4:8 • unnecessary_import
 warning • Unused import: 'package:http/http.dart' • lib/screen/settings.dart:25:8 • unused_import
@@ -92,9 +92,9 @@ warning • Unused import: 'package:http/http.dart' • lib/screen/settings.dart
    info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/telemarketer.dart:1:8 • unnecessary_import
    info • The import of 'package:flutter/widgets.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/screen/telemarketer.dart:3:8 • unnecessary_import
 warning • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: Telemarketer.outlet • lib/screen/telemarketer.dart:19:7 • must_be_immutable
-warning • Unused import: 'package:nrs_tele_apps/screen/notification.dart' • lib/widgets/appbar.dart:2:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/screen/notification.dart' • lib/widgets/appbar.dart:2:8 • unused_import
 warning • Unused import: 'package:flutter/foundation.dart' • lib/widgets/bottom_navigation_bar.dart:1:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/services/get_sharedpreferences.dart' • lib/widgets/bottom_navigation_bar.dart:15:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/services/get_sharedpreferences.dart' • lib/widgets/bottom_navigation_bar.dart:15:8 • unused_import
 warning • Unused import: 'package:flutter/foundation.dart' • lib/widgets/business_card_modal.dart:3:8 • unused_import
    info • The import of 'package:share_plus/share_plus.dart' is unnecessary because all of the used elements are also provided by the import of 'package:share_whatsapp/share_whatsapp.dart' • lib/widgets/business_card_modal.dart:14:8 • unnecessary_import
 warning • Unused import: 'package:url_launcher/url_launcher_string.dart' • lib/widgets/business_card_modal.dart:18:8 • unused_import
@@ -111,16 +111,16 @@ warning • Unused import: 'package:flutter/foundation.dart' • lib/widgets/cus
    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/widgets/custom_campaign_filter.dart:94:38 • deprecated_member_use
 warning • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: CustomContainer.backgroundColor, CustomContainer.color, CustomContainer.borderRadius, CustomContainer.borderSide, CustomContainer.fontWeight, CustomContainer.isSave • lib/widgets/custom_container.dart:4:7 • must_be_immutable
    info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/widgets/custom_search_bar.dart:1:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/provider/search_provider.dart' • lib/widgets/custom_search_bar.dart:6:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/provider/search_provider.dart' • lib/widgets/custom_search_bar.dart:6:8 • unused_import
 warning • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: CustomSearchBar.searchController, CustomSearchBar.searchQuery, CustomSearchBar.data, CustomSearchBar.item • lib/widgets/custom_search_bar.dart:9:7 • must_be_immutable
 warning • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: CustomTextfield.controller, CustomTextfield.obscureText, CustomTextfield.padding, CustomTextfield.contentPadding, CustomTextfield.enabled, CustomTextfield.floatingLabelBehavior, CustomTextfield.focusNode • lib/widgets/custom_textfield.dart:4:7 • must_be_immutable
 warning • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: CustomTiles.backgroundColor, CustomTiles.color, CustomTiles.borderColor, CustomTiles.borderRadius • lib/widgets/custom_tiles.dart:4:7 • must_be_immutable
    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/widgets/dialog_global.dart:24:37 • deprecated_member_use
 warning • The value of the local variable 'response' isn't used • lib/widgets/dialog_global.dart:102:25 • unused_local_variable
    info • The import of 'package:flutter/widgets.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/widgets/download_modal.dart:3:8 • unnecessary_import
-warning • Unused import: 'package:nrs_tele_apps/global_function/show_loading_dialog.dart' • lib/widgets/download_modal.dart:6:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/global_function/show_custom_dialog.dart' • lib/widgets/global_utils.dart:3:8 • unused_import
-warning • Unused import: 'package:nrs_tele_apps/main.dart' • lib/widgets/global_utils.dart:4:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/global_function/show_loading_dialog.dart' • lib/widgets/download_modal.dart:6:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/global_function/show_custom_dialog.dart' • lib/widgets/global_utils.dart:3:8 • unused_import
+warning • Unused import: 'package:petsmore_tele_app/main.dart' • lib/widgets/global_utils.dart:4:8 • unused_import
 warning • Unused import: 'package:url_launcher/url_launcher.dart' • lib/widgets/share_images_modal.dart:14:8 • unused_import
 warning • Unused import: 'package:url_launcher/url_launcher_string.dart' • lib/widgets/share_images_modal.dart:15:8 • unused_import
    info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/widgets/single_accordion.dart:1:8 • unnecessary_import

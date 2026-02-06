@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
 
 class SearchProvider extends ChangeNotifier {
   bool isError = false;

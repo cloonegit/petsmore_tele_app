@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:nrs_tele_apps/api/settings_api.dart';
+import 'package:petsmore_tele_app/api/settings_api.dart';
 
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
 
 class SettingProvider extends ChangeNotifier {
   bool isError = false;
@@ -61,7 +61,7 @@ class SettingProvider extends ChangeNotifier {
     responseData = await SettingAPI().setting(staffcode);
     AppDebug().printDebug(msg: 'setting provider res: $responseData');
 
-    if (responseData['status'] == '1') {
+    if (responseData != null && responseData.isNotEmpty && responseData['status'] == '1') {
       infoData = responseData['INFO'];
       notifyListeners();
     } else {

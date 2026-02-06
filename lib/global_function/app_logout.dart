@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/main.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/main.dart';
 
-import 'package:nrs_tele_apps/screen/login.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/screen/login.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
+
 class AppLogout {
   logout(BuildContext context, WidgetRef ref) async {
     await GetSharedPreferences().clearAllData();

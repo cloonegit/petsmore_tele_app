@@ -1,4 +1,4 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,20 +6,20 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nrs_tele_apps/global_function/app_back_button.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
-import 'package:nrs_tele_apps/provider/bottom_nav_provider.dart';
-import 'package:nrs_tele_apps/provider/login_provider.dart';
-import 'package:nrs_tele_apps/screen/home.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
-import 'package:nrs_tele_apps/services/package_info.dart';
-import 'package:nrs_tele_apps/widgets/bottom_navigation_bar.dart';
-import 'package:nrs_tele_apps/widgets/custom_container.dart';
-import 'package:nrs_tele_apps/widgets/custom_textfield.dart';
-import 'package:nrs_tele_apps/widgets/dialog_global.dart';
-import 'package:nrs_tele_apps/widgets/global_utils.dart';
+import 'package:petsmore_tele_app/global_function/app_back_button.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/show_custom_dialog.dart';
+import 'package:petsmore_tele_app/provider/bottom_nav_provider.dart';
+import 'package:petsmore_tele_app/provider/login_provider.dart';
+import 'package:petsmore_tele_app/screen/home.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/services/package_info.dart';
+import 'package:petsmore_tele_app/widgets/bottom_navigation_bar.dart';
+import 'package:petsmore_tele_app/widgets/custom_container.dart';
+import 'package:petsmore_tele_app/widgets/custom_textfield.dart';
+import 'package:petsmore_tele_app/widgets/dialog_global.dart';
+import 'package:petsmore_tele_app/widgets/global_utils.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Login extends ConsumerStatefulWidget {

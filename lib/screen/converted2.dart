@@ -1,19 +1,19 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nrs_tele_apps/global_function/app_back_button.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/global_function/app_logout.dart';
-import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/provider/bottom_nav_provider.dart';
-import 'package:nrs_tele_apps/screen/converted_detail.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
-import 'package:nrs_tele_apps/widgets/appbar.dart';
-import 'package:nrs_tele_apps/widgets/bottom_navigation_bar.dart';
+import 'package:petsmore_tele_app/global_function/app_back_button.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/app_logout.dart';
+import 'package:petsmore_tele_app/global_function/show_custom_dialog.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/provider/bottom_nav_provider.dart';
+import 'package:petsmore_tele_app/screen/converted_detail.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/widgets/appbar.dart';
+import 'package:petsmore_tele_app/widgets/bottom_navigation_bar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Converted2 extends ConsumerStatefulWidget {

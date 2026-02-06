@@ -1,6 +1,6 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'package:flutter/material.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void showCustomDialog(

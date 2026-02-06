@@ -1,4 +1,4 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,22 +6,22 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:send_message/send_message.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/global_function/app_logout.dart';
-import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/provider/bottom_nav_provider.dart';
-// import 'package:nrs_tele_apps/screen/call_summary.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
-import 'package:nrs_tele_apps/widgets/call_status_dropdown.dart';
-import 'package:nrs_tele_apps/screen/remarks_tab.dart';
-import 'package:nrs_tele_apps/widgets/appbar.dart';
-import 'package:nrs_tele_apps/widgets/bottom_navigation_bar.dart';
-import 'package:nrs_tele_apps/widgets/business_card_modal.dart';
-import 'package:nrs_tele_apps/widgets/custom_container.dart';
-import 'package:nrs_tele_apps/widgets/global_utils.dart';
-import 'package:nrs_tele_apps/widgets/single_accordion.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/app_logout.dart';
+import 'package:petsmore_tele_app/global_function/show_custom_dialog.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/provider/bottom_nav_provider.dart';
+// import 'package:petsmore_tele_app/screen/call_summary.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/widgets/call_status_dropdown.dart';
+import 'package:petsmore_tele_app/screen/remarks_tab.dart';
+import 'package:petsmore_tele_app/widgets/appbar.dart';
+import 'package:petsmore_tele_app/widgets/bottom_navigation_bar.dart';
+import 'package:petsmore_tele_app/widgets/business_card_modal.dart';
+import 'package:petsmore_tele_app/widgets/custom_container.dart';
+import 'package:petsmore_tele_app/widgets/global_utils.dart';
+import 'package:petsmore_tele_app/widgets/single_accordion.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:share_whatsapp/share_whatsapp.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -598,38 +598,38 @@ class _CallDetailsState extends ConsumerState<CallDetails>
             },
           ),
         ),
-        _buildIconButton(
-          'assets/icons/sms.png',
-          () async {
-            if (SMSData.isEmpty) {
-              showCustomDialog(context, 'Invalid',
-                  'No sms template for this campaign', 'OK', () {});
-              return;
-            }
+        // _buildIconButton(
+        //   'assets/icons/sms.png',
+        //   () async {
+        //     if (SMSData.isEmpty) {
+        //       showCustomDialog(context, 'Invalid',
+        //           'No sms template for this campaign', 'OK', () {});
+        //       return;
+        //     }
 
-            String? newSelectedValue = await GlobalUtils.TickListDialogSmall(
-              context,
-              whatsappOptions,
-              'Please choose a template to send',
-            );
+        //     String? newSelectedValue = await GlobalUtils.TickListDialogSmall(
+        //       context,
+        //       whatsappOptions,
+        //       'Please choose a template to send',
+        //     );
 
-            if (newSelectedValue != null) {
-              selectedSMSValue = newSelectedValue;
-              // String? selectedMessage = whatsAppData.firstWhere(
-              //   (item) => item['NAME'] == selectedSMSValue,
-              // )['MSG'];
-              int index = int.parse(selectedSMSValue ?? '');
-              String? selectedMessage = SMSData[index]['detail'];
-              String plainText = decodeMessage(selectedMessage ?? '');
+        //     if (newSelectedValue != null) {
+        //       selectedSMSValue = newSelectedValue;
+        //       // String? selectedMessage = whatsAppData.firstWhere(
+        //       //   (item) => item['NAME'] == selectedSMSValue,
+        //       // )['MSG'];
+        //       int index = int.parse(selectedSMSValue ?? '');
+        //       String? selectedMessage = SMSData[index]['detail'];
+        //       String plainText = decodeMessage(selectedMessage ?? '');
 
-              _sendSMS(plainText, recipents);
-              submitSMSLog(plainText);
-            } else {
-              AppDebug().printDebug(msg: 'sms message not empty');
-              selectedSMSValue = null;
-            }
-          },
-        ),
+        //       _sendSMS(plainText, recipents);
+        //       submitSMSLog(plainText);
+        //     } else {
+        //       AppDebug().printDebug(msg: 'sms message not empty');
+        //       selectedSMSValue = null;
+        //     }
+        //   },
+        // ),
         _buildIconButton(
           'assets/icons/share.png',
           () {
@@ -722,11 +722,16 @@ class _CallDetailsState extends ConsumerState<CallDetails>
   }
 
   void showBusinessCard(BuildContext context) async {
+    if (recipents.isEmpty) {
+      showCustomDialog(
+          context, 'Invalid', 'No contact number available', 'OK', () {});
+      return;
+    }
     showDialog<String>(
       context: context,
       builder: (BuildContext context) {
         return BusinessCardModal(
-          contact: recipents.first.toString(),
+          contact: recipents.first,
         );
       },
     );

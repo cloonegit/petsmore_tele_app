@@ -2,17 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/provider/bottom_nav_provider.dart';
-import 'package:nrs_tele_apps/screen/call_summary.dart';
-import 'package:nrs_tele_apps/screen/converted.dart';
-import 'package:nrs_tele_apps/screen/home.dart';
-import 'package:nrs_tele_apps/screen/login.dart';
-import 'package:nrs_tele_apps/screen/outlet.dart';
-import 'package:nrs_tele_apps/screen/settings.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/provider/bottom_nav_provider.dart';
+import 'package:petsmore_tele_app/screen/call_summary.dart';
+import 'package:petsmore_tele_app/screen/converted.dart';
+import 'package:petsmore_tele_app/screen/home.dart';
+import 'package:petsmore_tele_app/screen/login.dart';
+import 'package:petsmore_tele_app/screen/outlet.dart';
+import 'package:petsmore_tele_app/screen/settings.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class BottomNavBar extends ConsumerStatefulWidget {

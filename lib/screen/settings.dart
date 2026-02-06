@@ -1,4 +1,4 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'dart:convert';
 // import 'dart:io';
 
@@ -8,20 +8,20 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nrs_tele_apps/global_function/app_back_button.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/global_function/app_logout.dart';
-import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/provider/bottom_nav_provider.dart';
-import 'package:nrs_tele_apps/services/get_it.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
-import 'package:nrs_tele_apps/services/package_info.dart';
-import 'package:nrs_tele_apps/widgets/appbar.dart';
-import 'package:nrs_tele_apps/widgets/custom_container.dart';
-import 'package:nrs_tele_apps/widgets/global_utils.dart';
-import 'package:nrs_tele_apps/widgets/separator.dart';
-import 'package:nrs_tele_apps/widgets/text_style_global.dart';
+import 'package:petsmore_tele_app/global_function/app_back_button.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/app_logout.dart';
+import 'package:petsmore_tele_app/global_function/show_custom_dialog.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/provider/bottom_nav_provider.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/services/package_info.dart';
+import 'package:petsmore_tele_app/widgets/appbar.dart';
+import 'package:petsmore_tele_app/widgets/custom_container.dart';
+import 'package:petsmore_tele_app/widgets/global_utils.dart';
+import 'package:petsmore_tele_app/widgets/separator.dart';
+import 'package:petsmore_tele_app/widgets/text_style_global.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 // import 'package:http/http.dart' as http;
 
@@ -115,6 +115,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
   }
 
   Future<void> fetchData() async {
+    errorMessageService.clearErrorMessage();
     userLogin = await GetSharedPreferences().getUserPosition();
     AppDebug().printDebug(msg: 'userLogin: $userLogin');
 
@@ -123,14 +124,18 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
 
       userData = ref.read(settingProvider).getInfoData;
       if (userData.isNotEmpty) assignTextEditing();
-      base64ImageString =
-          await ref.read(settingProvider).getInfoData['PICTURE']['VALUE'] ?? '';
+      final infoData = ref.read(settingProvider).getInfoData;
+      if (infoData.containsKey('PICTURE')) {
+        base64ImageString = infoData['PICTURE']['VALUE'] ?? '';
+      } else {
+        base64ImageString = '';
+      }
 
-      if (base64ImageString != null || base64ImageString != "") {
+      if (base64ImageString != null && base64ImageString != "") {
         setProfilePicture();
       } else {
         AppDebug()
-            .printDebug(msg: 'base64ImageString is NULL:$base64ImageString');
+            .printDebug(msg: 'base64ImageString is empty or NULL');
       }
     } catch (e) {
       final errorMessage = errorMessageService.getErrorMessage();

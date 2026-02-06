@@ -1,10 +1,10 @@
 // import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:nrs_tele_apps/api/call_summary_api.dart';
-// import 'package:nrs_tele_apps/api/home_api.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/api/call_summary_api.dart';
+// import 'package:petsmore_tele_app/api/home_api.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
 
 class CallSummaryProvider extends ChangeNotifier {
   bool isError = false;
@@ -306,9 +306,7 @@ class CallSummaryProvider extends ChangeNotifier {
   Future<void> fetchCallSummaryAPI() async {
     String staffcode = await GetSharedPreferences().getuserCode();
     responseData = await CallSummaryAPI().callSummary(staffcode);
-    AppDebug().printDebug(msg: 'call summary provider res: $responseData');
-
-    if (responseData['status'] == '1') {
+    if (responseData != null && responseData.isNotEmpty && responseData['status'] == '1') {
       await checkCampaignList(responseData);
       await checkAllCampaignList(responseData);
       await checkTabList(responseData);

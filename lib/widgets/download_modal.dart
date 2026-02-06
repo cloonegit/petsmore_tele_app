@@ -1,15 +1,15 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/global_function/show_loading_dialog.dart';
-import 'package:nrs_tele_apps/widgets/global_utils.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/show_loading_dialog.dart';
+import 'package:petsmore_tele_app/widgets/global_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:background_downloader/background_downloader.dart';
-import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
-import 'package:nrs_tele_apps/widgets/custom_container.dart';
+import 'package:petsmore_tele_app/global_function/show_custom_dialog.dart';
+import 'package:petsmore_tele_app/widgets/custom_container.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DownloadModal extends ConsumerStatefulWidget {

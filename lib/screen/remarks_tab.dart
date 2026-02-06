@@ -1,10 +1,10 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/provider/call_summary_detail_provider.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/provider/call_summary_detail_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RemarksTab extends ConsumerStatefulWidget {

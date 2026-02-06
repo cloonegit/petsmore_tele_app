@@ -1,12 +1,12 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/services/debouncer.dart';
-import 'package:nrs_tele_apps/widgets/download_modal.dart';
-import 'package:nrs_tele_apps/widgets/share_images_modal.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/services/debouncer.dart';
+import 'package:petsmore_tele_app/widgets/download_modal.dart';
+import 'package:petsmore_tele_app/widgets/share_images_modal.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SingleAccordion extends ConsumerStatefulWidget {
@@ -244,6 +244,18 @@ class _SingleAccordionState extends ConsumerState<SingleAccordion> {
     await callsummary.compareCampaignName(campaignName);
     final campaignId = callsummary.getCampaignId;
     final imageList = await ref.read(campaignProvider).getCampaignImages;
+    String description = '';
+
+    for (var campaign in widget.callInfo2) {
+      if (campaign['campaign_name'] == campaignName) {
+        description = campaign['description'] ?? '';
+        if (description.contains('<br />')) {
+          description = description.replaceAll('<br />', '\n');
+        }
+        break;
+      }
+    }
+
     AppDebug().printDebug(msg: 'imageList:$imageList...$campaignId');
     if (imageList.isEmpty || imageList[0]['images'] == null) {
       AppDebug().printDebug(msg: 'imagesList is empty');
@@ -251,7 +263,10 @@ class _SingleAccordionState extends ConsumerState<SingleAccordion> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return ShareImagesModal(imagesList: imagesList);
+          return ShareImagesModal(
+            imagesList: imagesList,
+            text: description,
+          );
         },
       );
     } else {
@@ -266,7 +281,10 @@ class _SingleAccordionState extends ConsumerState<SingleAccordion> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return ShareImagesModal(imagesList: imagesList);
+          return ShareImagesModal(
+            imagesList: imagesList,
+            text: description,
+          );
         },
       );
     }

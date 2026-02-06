@@ -2,11 +2,11 @@ import 'dart:async';
 // import 'dart:io';
 
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/api/api_manager.dart';
-import 'package:nrs_tele_apps/api/global_api.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-// import 'package:nrs_tele_apps/main.dart';
-// import 'package:nrs_tele_apps/services/get_it.dart';
+import 'package:petsmore_tele_app/api/api_manager.dart';
+import 'package:petsmore_tele_app/api/global_api.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+// import 'package:petsmore_tele_app/main.dart';
+// import 'package:petsmore_tele_app/services/get_it.dart';
 
 class LoginAPI {
   Future login(String? username, String? password) async {

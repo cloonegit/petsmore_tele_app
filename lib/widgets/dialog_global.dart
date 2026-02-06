@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:nrs_tele_apps/widgets/text_style_global.dart';
+import 'package:petsmore_tele_app/widgets/text_style_global.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DialogGlobal extends StatelessWidget {

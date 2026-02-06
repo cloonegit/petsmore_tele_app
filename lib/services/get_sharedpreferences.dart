@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GetSharedPreferences {

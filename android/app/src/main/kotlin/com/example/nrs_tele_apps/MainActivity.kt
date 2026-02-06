@@ -1,4 +1,4 @@
-package com.example.nrs_tele_apps
+package com.example.petsmore_tele_app
 
 import io.flutter.embedding.android.FlutterActivity
 

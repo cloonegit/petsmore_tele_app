@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:nrs_tele_apps/api/call_summary_api.dart';
-import 'package:nrs_tele_apps/api/converted_api.dart';
+import 'package:petsmore_tele_app/api/call_summary_api.dart';
+import 'package:petsmore_tele_app/api/converted_api.dart';
 
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/services/get_sharedpreferences.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
 
 class ConvertedProvider extends ChangeNotifier {
   bool isError = false;
@@ -130,8 +130,8 @@ class ConvertedProvider extends ChangeNotifier {
   Future<void> fetchCustomerListAPI(String? outlet) async {
     responseData = await ConvertedAPI().customerList(outlet);
     // AppDebug().printDebug(msg: 'outlet list provider res: $responseData');
-    var data = responseData['LIST'];
-    if (responseData.isNotEmpty && data != null) {
+    if (responseData != null && responseData.isNotEmpty && responseData.containsKey('LIST')) {
+      var data = responseData['LIST'];
       custList = responseData['LIST'];
       AppDebug().printDebug(msg: 'custList: $custList');
     } else {
@@ -168,8 +168,8 @@ class ConvertedProvider extends ChangeNotifier {
   Future<void> fetchApproachedListAPI(String? outlet) async {
     responseData = await ConvertedAPI().approachedList(outlet);
     // AppDebug().printDebug(msg: 'outlet list provider res: $responseData');
-    var data = responseData['LIST'];
-    if (responseData.isNotEmpty && data != null) {
+    if (responseData != null && responseData.isNotEmpty && responseData.containsKey('LIST')) {
+      var data = responseData['LIST'];
       approachedList = responseData['LIST'];
       AppDebug().printDebug(msg: 'approachedList: $approachedList');
     } else {
@@ -206,8 +206,8 @@ class ConvertedProvider extends ChangeNotifier {
   Future<void> fetchApproachDetailAPI(String? cid) async {
     responseData = await ConvertedAPI().approachedDetail(cid);
     // AppDebug().printDebug(msg: 'outlet list provider res: $responseData');
-    var data = responseData['INFO'] ?? {};
-    if (responseData.isNotEmpty && data != null) {
+    if (responseData != null && responseData.isNotEmpty && responseData.containsKey('INFO')) {
+      var data = responseData['INFO'] ?? {};
       approachedDetails = responseData['INFO'];
       AppDebug().printDebug(msg: 'approachedDetails: $approachedDetails');
     } else {
@@ -248,7 +248,7 @@ class ConvertedProvider extends ChangeNotifier {
         await ConvertedAPI().approachedSubmit(cid, remarks, sontype, son);
     // AppDebug().printDebug(msg: 'outlet list provider res: $responseData');
     // var data = responseData['LIST'];
-    if (responseData.isNotEmpty && responseData['status'] == '1') {
+    if (responseData != null && responseData.isNotEmpty && responseData['status'] == '1') {
       AppDebug().printDebug(msg: 'approachedSubmit: $responseData');
     } else {
       AppDebug().printDebug(msg: 'approachedSubmit status 0: $responseData');
@@ -286,7 +286,7 @@ class ConvertedProvider extends ChangeNotifier {
     }
     // AppDebug().printDebug(msg: 'whatsapp provider res: $responseData');
 
-    if (responseData['status'] == '1') {
+    if (responseData != null && responseData.isNotEmpty && responseData['status'] == '1') {
       if (responseData.containsKey('list') &&
           responseData['list'] is List &&
           responseData['list'].isNotEmpty) {

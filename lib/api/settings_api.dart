@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:nrs_tele_apps/api/api_manager.dart';
-import 'package:nrs_tele_apps/api/global_api.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/api/api_manager.dart';
+import 'package:petsmore_tele_app/api/global_api.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
 import 'package:http/http.dart' as http;
-import 'package:nrs_tele_apps/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
 
 class SettingAPI {
   Future<Map> setting(String? staffCode) async {
@@ -23,7 +23,7 @@ class SettingAPI {
       // getIt<ErrorMessageService>().setErrorMessage(e.toString());
     }
 
-    return response;
+    return response ?? {};
   }
 
   // Future<Map> updateSetting(

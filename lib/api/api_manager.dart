@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:nrs_tele_apps/api/custom_exception.dart';
-import 'package:nrs_tele_apps/api/global_api.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/api/custom_exception.dart';
+import 'package:petsmore_tele_app/api/global_api.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
 import 'package:http/http.dart' as http;
-import 'package:nrs_tele_apps/services/get_it.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
 
 class APIManager {
   Future<dynamic> postAPICall(String url, Map param) async {
@@ -29,7 +29,7 @@ class APIManager {
       throw FetchDataException(
           'The connection has timed out, please try again');
     } on FormatException {
-      throw FetchDataException('Bad response format');
+      throw FetchDataException('Bad response format (URL: $url)');
     } catch (e) {
       // Catch any other errors
       AppDebug().printDebug(msg: 'Unknown error occurred: $e');
@@ -151,11 +151,11 @@ class APIManager {
       getIt<ErrorMessageService>().setErrorMessage(errorMessage);
       throw FetchDataException(errorMessage);
     } on FormatException {
-      String errorMessage = 'Bad response format';
+      String errorMessage = 'Bad response format (URL: $url)';
       getIt<ErrorMessageService>().setErrorMessage(errorMessage);
       throw FetchDataException(errorMessage);
     } catch (e) {
-      String errorMessage = 'Unknown error occurred: $e';
+      String errorMessage = 'Unknown error occurred: $e (URL: $url)';
       getIt<ErrorMessageService>().setErrorMessage(errorMessage);
       AppDebug().printDebug(msg: errorMessage);
       throw FetchDataException(errorMessage);
@@ -234,8 +234,19 @@ class APIManager {
     var responseJson;
     switch (response.statusCode) {
       case 200:
-        responseJson = json.decode(response.body.toString());
-        return responseJson;
+        try {
+          if (response.body.isEmpty) {
+            AppDebug().printDebug(msg: 'Empty response body for $url');
+            return {};
+          }
+          responseJson = json.decode(response.body.toString());
+          return responseJson;
+        } catch (e) {
+          AppDebug().printDebug(
+              msg:
+                  'JSON Decode Error for $url: $e\nResponse Body: ${response.body}');
+          rethrow;
+        }
       case 400:
         responseJson = json.decode(response.body.toString());
         getIt<ErrorMessageService>().setErrorMessage("Bad request: $url");

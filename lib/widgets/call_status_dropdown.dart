@@ -1,12 +1,12 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/widgets/global_utils.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/widgets/global_utils.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CallStatusDropdown extends ConsumerStatefulWidget {

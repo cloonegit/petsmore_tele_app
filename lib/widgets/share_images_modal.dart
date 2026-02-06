@@ -1,12 +1,13 @@
-import 'package:nrs_tele_apps/config/global.dart';
+import 'package:petsmore_tele_app/config/global.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nrs_tele_apps/global_function/app_debug_print.dart';
-import 'package:nrs_tele_apps/global_function/show_custom_dialog.dart';
-import 'package:nrs_tele_apps/main.dart';
-import 'package:nrs_tele_apps/widgets/custom_container.dart';
-import 'package:nrs_tele_apps/widgets/global_utils.dart';
+import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/global_function/show_custom_dialog.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:petsmore_tele_app/widgets/custom_container.dart';
+import 'package:petsmore_tele_app/widgets/global_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:share_whatsapp/share_whatsapp.dart';
@@ -17,8 +18,9 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class ShareImagesModal extends ConsumerStatefulWidget {
   final List imagesList;
+  final String? text;
 
-  ShareImagesModal({super.key, required this.imagesList});
+  ShareImagesModal({super.key, required this.imagesList, this.text});
 
   @override
   ConsumerState<ShareImagesModal> createState() => _ShareImagesModalState();
@@ -200,13 +202,46 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
     try {
       final response = await http.get(Uri.parse(imageUrl));
       if (response.statusCode == 200) {
-        final directory = await getTemporaryDirectory();
-        final imagePath = '${directory.path}/shared_image.jpg';
+        // Use application documents directory for better iOS share extension access
+        final directory = await getApplicationDocumentsDirectory();
+        // Use unique filename with timestamp to avoid caching issues
+        final timestamp = DateTime.now().millisecondsSinceEpoch;
+        final imagePath = '${directory.path}/shared_image_$timestamp.jpg';
         final imageFile = File(imagePath);
-        await imageFile.writeAsBytes(response.bodyBytes);
 
-        await shareWhatsapp.shareFile(XFile(imageFile.path),
-            phone: contact.toString());
+        // Write bytes and flush to ensure file is fully written
+        await imageFile.writeAsBytes(response.bodyBytes, flush: true);
+
+        // Longer delay to ensure iOS file system has fully registered the file
+        await Future.delayed(const Duration(milliseconds: 500));
+        
+        // Platform-specific sharing behavior
+        if (Platform.isIOS) {
+          // iOS WhatsApp workaround: Copy caption to clipboard
+          // WhatsApp on iOS has a known bug where image+text causes blank preview
+          if (widget.text != null && widget.text!.isNotEmpty) {
+            await Clipboard.setData(ClipboardData(text: widget.text!));
+            if (mounted) {
+              GlobalUtils.showFloatingMessage(
+                  context, 'Caption copied to clipboard. Paste in WhatsApp.');
+            }
+          }
+          // Share image WITHOUT text parameter to fix iOS WhatsApp blank preview
+          // Check if still mounted after async operations
+          if (!mounted) return;
+          final box = context.findRenderObject() as RenderBox?;
+          await Share.shareXFiles(
+              [XFile(imageFile.path, mimeType: 'image/jpeg')],
+              sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+        } else {
+          // Android: Use share_whatsapp to directly open WhatsApp with contact
+          final shareWhatsapp = ShareWhatsapp();
+          await shareWhatsapp.share(
+            file: XFile(imageFile.path),
+            phone: contact.toString(),
+            text: widget.text,
+          );
+        }
         // String sendMsg = Uri.encodeComponent(imageFile.path);
         // String whatsAppUrl = 'https://wa.me/${contact}?text=${sendMsg}';
         // if (await canLaunchUrlString(whatsAppUrl)) {
@@ -220,8 +255,10 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
       }
     } catch (e) {
       AppDebug().printDebug(msg: 'Error downloading or sharing image: $e');
-      GlobalUtils.showFloatingMessage(
-          context, 'Error downloading or sharing image: $e');
+      if (mounted) {
+        GlobalUtils.showFloatingMessage(
+            context, 'Error downloading or sharing image: $e');
+      }
     }
   }
 
@@ -253,28 +290,65 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
   Future<void> _shareAllImages() async {
     try {
       List<XFile> imageFiles = [];
+      final timestamp = DateTime.now().millisecondsSinceEpoch;
 
       for (int i = 0; i < widget.imagesList.length; i++) {
         String imageUrl = widget.imagesList[i];
 
         final response = await http.get(Uri.parse(imageUrl));
         if (response.statusCode == 200) {
-          final directory = await getTemporaryDirectory();
-          final imagePath = '${directory.path}/shared_image_$i.jpg';
+          // Use application documents directory for better iOS share extension access
+          final directory = await getApplicationDocumentsDirectory();
+          // Use unique filename with timestamp to avoid caching issues
+          final imagePath =
+              '${directory.path}/shared_image_${timestamp}_$i.jpg';
           final imageFile = File(imagePath);
-          await imageFile.writeAsBytes(response.bodyBytes);
+          // Write bytes and flush to ensure file is fully written
+          await imageFile.writeAsBytes(response.bodyBytes, flush: true);
 
-          imageFiles.add(XFile(imageFile.path));
+          imageFiles.add(XFile(imageFile.path, mimeType: 'image/jpeg'));
         }
       }
 
       if (imageFiles.isNotEmpty) {
-        await Share.shareXFiles(imageFiles);
+        // Longer delay to ensure iOS file system has fully registered all files
+        await Future.delayed(const Duration(milliseconds: 500));
+
+        // Check if still mounted after async operations
+        if (!mounted) return;
+        final box = context.findRenderObject() as RenderBox?;
+        
+        // Platform-specific sharing behavior
+        if (Platform.isIOS) {
+          // iOS WhatsApp workaround: Copy caption to clipboard
+          // WhatsApp on iOS has a known bug where image+text causes blank preview
+          if (widget.text != null && widget.text!.isNotEmpty) {
+            await Clipboard.setData(ClipboardData(text: widget.text!));
+            if (mounted) {
+              GlobalUtils.showFloatingMessage(
+                  context, 'Caption copied to clipboard. Paste in WhatsApp.');
+            }
+          }
+          // Share images WITHOUT text parameter to fix iOS WhatsApp blank preview
+          await Share.shareXFiles(imageFiles,
+              sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+        } else {
+          // Android: Use share_whatsapp to directly open WhatsApp with contact
+          // Note: share_whatsapp only supports single file, so share first image
+          final shareWhatsapp = ShareWhatsapp();
+          await shareWhatsapp.share(
+            file: imageFiles.first,
+            phone: contact.toString(),
+            text: widget.text,
+          );
+        }
       }
     } catch (e) {
       AppDebug().printDebug(msg: 'Error downloading or sharing images: $e');
-      GlobalUtils.showFloatingMessage(
-          context, 'Error downloading or sharing image: $e');
+      if (mounted) {
+        GlobalUtils.showFloatingMessage(
+            context, 'Error downloading or sharing image: $e');
+      }
     }
   }
 }

@@ -68,9 +68,15 @@ app.*.map.json
 **/ios/Flutter/app.flx
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/
-**/ios/Podfile.lock
+
 **/ios/Pods/
 **/ios/Runner.xcworkspace/
 
 # macOS related
 **/macos/Flutter/ephemeral/
+
+# Environment variables
+.env
+
+# Testing
+coverage/
