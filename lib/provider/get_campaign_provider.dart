@@ -160,13 +160,14 @@ class GetCampaignProvider extends ChangeNotifier {
     responseData = await CallSummaryAPI().campaignAudio(campaignId);
     AppDebug().printDebug(msg: 'audio provider res: $responseData');
 
-    if (responseData.isNotEmpty &&
-        responseData.containsKey('data') &&
-        responseData['data'] != null) {
-      campaignAudio = responseData['data'];
+    if (responseData.isNotEmpty && responseData.containsKey('data')) {
+      List data1 = responseData['data'] ?? [];
+      List data2 = responseData['data_2'] ?? [];
+      campaignAudio = [...data1, ...data2];
       AppDebug().printDebug(msg: 'audio campaign: $campaignAudio');
     } else {
       AppDebug().printDebug(msg: 'audio provider status 0: $responseData');
+      campaignAudio = [];
     }
     notifyListeners();
   }
@@ -211,15 +212,9 @@ class GetCampaignProvider extends ChangeNotifier {
     AppDebug().printDebug(msg: 'video provider res: $responseData');
 
     if (responseData.isNotEmpty && responseData.containsKey('data')) {
-      var data = responseData['data'];
-      var data2 = responseData['data_2'];
-      if (data != null && data.isNotEmpty) {
-        campaignVideo = data;
-      } else if (data2 != null && data2.isNotEmpty) {
-        campaignVideo = data2;
-      } else {
-        campaignVideo = [];
-      }
+      List data1 = responseData['data'] ?? [];
+      List data2 = responseData['data_2'] ?? [];
+      campaignVideo = [...data1, ...data2];
       AppDebug().printDebug(msg: 'Campaign video data: $campaignVideo');
     } else {
       AppDebug().printDebug(msg: 'video status 0: $responseData');

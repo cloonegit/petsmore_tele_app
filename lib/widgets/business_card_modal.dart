@@ -103,10 +103,13 @@ class _BusinessCardModalState extends ConsumerState<BusinessCardModal> {
                       horizontal: Adaptive.w(5), vertical: Adaptive.h(0)),
                   child: CustomContainer(
                     onPressed: () {
+                      String msg = Platform.isIOS
+                          ? 'Confirm to send this visual?\n\nImage will be copied to clipboard. Paste it in WhatsApp.'
+                          : 'Confirm to send this visual?';
                       showCustomDialog(
                         context,
                         '',
-                        'Confirm to send this visual?',
+                        msg,
                         'OK',
                         () {
                           _shareBusinessCard();
@@ -129,20 +132,11 @@ class _BusinessCardModalState extends ConsumerState<BusinessCardModal> {
   Future<void> _shareBusinessCard() async {
     AppDebug().printDebug(msg: 'Starting _shareBusinessCard, url: $businessCard');
     if (businessCard.isNotEmpty) {
-      if (mounted) {
-        GlobalUtils.showFloatingMessage(context, 'Preparing business card...');
-      }
       try {
-        if (mounted) {
-          GlobalUtils.showFloatingMessage(context, 'Downloading business card...');
-        }
         AppDebug().printDebug(msg: 'Downloading business card from: $businessCard');
         final response = await http.get(Uri.parse(businessCard)).timeout(const Duration(seconds: 10));
 
         if (response.statusCode == 200) {
-          if (mounted) {
-            GlobalUtils.showFloatingMessage(context, 'Image downloaded, preparing to share...');
-          }
           AppDebug().printDebug(msg: 'Download successful, saving to file...');
           // Use application documents directory for better iOS share extension access
           final directory = await getApplicationDocumentsDirectory();
@@ -170,18 +164,21 @@ class _BusinessCardModalState extends ConsumerState<BusinessCardModal> {
           const caption = 'Petsmore Business Card';
           if (Platform.isIOS) {
             AppDebug().printDebug(msg: 'Sharing on iOS...');
-            // iOS WhatsApp workaround: Copy caption to clipboard
-            // WhatsApp on iOS has a known bug where image+text causes blank preview
-            await Clipboard.setData(const ClipboardData(text: caption));
-            if (mounted) {
-              GlobalUtils.showFloatingMessage(
-                  context, 'Caption copied to clipboard. Paste in WhatsApp.');
+            // iOS: Copy image to clipboard and open WhatsApp directly via wa.me link
+            final imageBytes = await imageFile.readAsBytes();
+            await Clipboard.setData(const ClipboardData(text: ''));
+            // Use the platform channel to copy image to clipboard
+            await _copyImageToClipboard(imageBytes);
+
+            // Clean contact number: remove +, -, spaces
+            String cleanContact = (widget.contact ?? '').replaceAll(RegExp(r'[+\-\s]'), '');
+            
+            // Build WhatsApp URL with phone (no text/caption as per request)
+            String whatsAppUrl = 'https://wa.me/$cleanContact';
+
+            if (await canLaunchUrlString(whatsAppUrl)) {
+              await launchUrlString(whatsAppUrl, mode: LaunchMode.externalApplication);
             }
-            // Share image WITHOUT text parameter to fix iOS WhatsApp blank preview
-            await Share.shareXFiles(
-              [XFile(imageFile.path, mimeType: 'image/jpeg')],
-              sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-            );
           } else {
             AppDebug().printDebug(msg: 'Sharing on Android to contact: ${widget.contact}');
             // Android: Use share_whatsapp to directly open WhatsApp with contact
@@ -193,9 +190,6 @@ class _BusinessCardModalState extends ConsumerState<BusinessCardModal> {
               text: caption,
             );
             AppDebug().printDebug(msg: 'Share call completed successfully.');
-            if (mounted) {
-              GlobalUtils.showFloatingMessage(context, 'Opening WhatsApp...');
-            }
           }
         } else {
           AppDebug().printDebug(
@@ -211,6 +205,16 @@ class _BusinessCardModalState extends ConsumerState<BusinessCardModal> {
       }
     } else {
       AppDebug().printDebug(msg: 'No business card to share');
+    }
+  }
+
+  /// Copies image bytes to the iOS system pasteboard via a native MethodChannel.
+  Future<void> _copyImageToClipboard(Uint8List imageBytes) async {
+    const channel = MethodChannel('com.petsmore.tele/clipboard');
+    try {
+      await channel.invokeMethod('copyImageToClipboard', imageBytes);
+    } catch (e) {
+      AppDebug().printDebug(msg: 'Error copying image to clipboard: $e');
     }
   }
 }

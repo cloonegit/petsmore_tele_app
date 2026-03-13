@@ -43,7 +43,7 @@ class CustomTextfield extends StatefulWidget {
 
 class _CustomTextfieldState extends State<CustomTextfield>
     with SingleTickerProviderStateMixin {
-  bool _obscureImg = true;
+  late bool _obscureImg;
   String? errorMessage;
   // late AnimationController _controller;
   // late Animation<double> _shakeAnimation;
@@ -51,6 +51,7 @@ class _CustomTextfieldState extends State<CustomTextfield>
   @override
   void initState() {
     super.initState();
+    _obscureImg = widget.obscureText ?? true;
     // Initialize animation controller for shaking effect
     // _controller = AnimationController(
     //   vsync: this,
@@ -110,7 +111,7 @@ class _CustomTextfieldState extends State<CustomTextfield>
               controller: widget.controller,
               focusNode: widget.focusNode,
               keyboardType: widget.keyboardType,
-              obscureText: widget.obscureText ?? false,
+              obscureText: _obscureImg,
               style: const TextStyle(
                   letterSpacing: 0.8,
                   fontFamily: 'Poppins',
@@ -125,7 +126,6 @@ class _CustomTextfieldState extends State<CustomTextfield>
                         onTap: () {
                           setState(() {
                             _obscureImg = !_obscureImg;
-                            widget.obscureText = _obscureImg;
                           });
                         },
                         child: Icon(

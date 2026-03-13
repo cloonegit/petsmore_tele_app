@@ -26,6 +26,62 @@ UI constants are managed in `lib/config/global.dart`.
 - **`AppTextStyles`**: Centralized Poppins text styles.
 - **`AppDimensions`**: Standard padding, margins, and border radii.
 
+## 📡 API Documentation
+
+All API endpoints are centralized in `lib/api/global_api.dart`. The base URL is `https://tele.petsmore.com.my/api`.
+
+### 1. Authentication
+- **Login**: `GET /login.php`
+  - Parameters: `username`, `password`
+  - File: `lib/api/login_api.dart`
+
+### 2. Home & Dashboard
+- **Home Data**: `GET /home_3.php`
+  - Parameters: `staffcode`
+  - File: `lib/api/home_api.dart`
+
+### 3. Call Summary & Interaction
+- **Call Summary**: `GET /call_summary_2.php?staffcode={staffcode}`
+- **Call Detail**: `GET /call_detail_2.php?platform={type}&staffcode={staffcode}&cid={cid}`
+- **WhatsApp Detail**: `GET /call_detail_whatsapp.php?staffcode={staffcode}&cid={cid}`
+- **Business Card**: `GET /call_detail_namecard.php?staffcode={staffcode}&cid={cid}`
+- **Campaign Images**: `GET /call_detail_share_new.php?staffcode={staffcode}&cid={cid}`
+- **Campaign Audio**: `GET /get_audio_list.php?campaign_id={id}`
+- **Campaign Video**: `GET /get_video_list.php?campaign_id={id}`
+- **WhatsApp Log Submit**: `GET /whatsapp_log_submit_new.php`
+  - Parameters: `staffcode`, `cid`, `campaign_id`, `platform`, `count_whatsapp_log`
+- **SMS Sharing Log**: `GET /sms_sharing.php?number={num}&message={msg}`
+- **Submit Remarks**: `GET /call_detail_submit.php`
+  - Parameters: `platform`, `staffcode`, `cid`, `callstatus`, `remark`
+- **File**: `lib/api/call_summary_api.dart`
+
+### 4. Converted Sales
+- **Outlet List**: `GET /tele_converted.php?staffcode={staffcode}`
+- **Customer List**: `GET /tele_converted_customer.php?outletcode={outlet}`
+- **Approached List**: `GET /tele_converted_salesorder.php?outletcode={outlet}`
+- **Approached Detail**: `GET /tele_converted_call_detail.php?cid={cid}`
+- **Approached Submit**: `GET /tele_converted_call_detail_submit.php`
+  - Parameters: `cid`, `remark`, `son_type`, `son`
+- **File**: `lib/api/converted_api.dart`
+
+### 5. Telemarketer Assignment
+- **General Assignment**:
+  - Outlet List: `GET /tele_outlet.php?staffcode={staffcode}`
+  - Staff List: `GET /tele_outlet_staff4.php?staffcode={staffcode}&outlet={outlet}`
+  - Assign: `GET /tele_outlet_staff_submit.php?staffcode={staffcode}&telemarketer={assign}&outlet={outlet}`
+  - File: `lib/api/telemarketer_assign.dart`
+- **Campaign Assignment**:
+  - Outlet List: `GET /tele_outlet_campaign.php`
+  - Staff Group: `GET /tele_outlet_staff_group.php?staffcode={staffcode}&outlet={outlet}&campaignid={id}`
+  - Assign: `GET /tele_outlet_staff_group_submit.php?staffcode={staffcode}&telemarketer={assign}&outlet={outlet}&campaignid={id}`
+  - File: `lib/api/telemarketer_campaign_assign.dart`
+
+### 6. Settings
+- **Get Settings**: `GET /call_setting.php?staffcode={staffcode}`
+- **Update Settings**: `POST /call_setting_update.php` (Multipart)
+  - Fields: `staffName`, `staffCode`, `staffContact`, `outletAddress`, `outletContact`, `profile_pic` (base64)
+- **File**: `lib/api/settings_api.dart`
+
 ## 📁 Key Directories
 
 | Directory | Responsibility |
@@ -80,3 +136,6 @@ flutter build ios --release
 - Use `AppColors` and `AppTextStyles` for all UI elements.
 - Use `responsive_sizer` (`.h`, `.w`, `.sp`) for layout dimensions to ensure responsiveness.
 - Wrap API calls in `try-catch` blocks or handle them within Riverpod providers.
+
+cd ios
+open Runner.xcworkspace

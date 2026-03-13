@@ -11,6 +11,11 @@ import 'package:background_downloader/background_downloader.dart';
 import 'package:petsmore_tele_app/global_function/show_custom_dialog.dart';
 import 'package:petsmore_tele_app/widgets/custom_container.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:petsmore_tele_app/provider/call_summary_detail_provider.dart';
+import 'package:petsmore_tele_app/main.dart';
+import 'package:http/http.dart' as http;
 
 class DownloadModal extends ConsumerStatefulWidget {
   final audioList;
@@ -150,24 +155,41 @@ class _DownloadModalState extends ConsumerState<DownloadModal> {
                         final data = widget.audioList[index];
                         String filename = data['audio_name'];
                         String pathname = data['audio_path'];
+                        final uploadType = data['upload_type']?.toString();
+                        final isExternal = uploadType == '1';
 
-                        return CheckboxListTile(
+                        return ListTile(
+                          leading: Checkbox(
+                            value: _selectedMedia[pathname] ?? false,
+                            onChanged: isExternal
+                                ? null
+                                : (bool? value) {
+                                    setState(() {
+                                      _selectedMedia[pathname] = value ?? false;
+                                      if (value == true) {
+                                        audioFilenames.add(filename);
+                                      } else {
+                                        audioFilenames.remove(filename);
+                                      }
+                                      _isSelected =
+                                          _selectedMedia.containsValue(true);
+                                    });
+                                    AppDebug().printDebug(
+                                        msg: '${_selectedMedia[pathname]}');
+                                  },
+                          ),
                           title: Text(filename),
-                          value: _selectedMedia[pathname] ?? false,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              _selectedMedia[pathname] = value ?? false;
-                              if (value == true) {
-                                audioFilenames.add(filename);
-                              } else {
-                                audioFilenames.remove(filename);
-                              }
-                              _isSelected = _selectedMedia.containsValue(true);
-                            });
-                            AppDebug()
-                                .printDebug(msg: '${_selectedMedia[pathname]}');
-                          },
-                          controlAffinity: ListTileControlAffinity.trailing,
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.share,
+                                    color: AppColors.primary),
+                                onPressed: () =>
+                                    _shareMedia(data, filename, pathname),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     ),
@@ -209,24 +231,41 @@ class _DownloadModalState extends ConsumerState<DownloadModal> {
                       final data = widget.videoList[index];
                       String filename = data['video_name'];
                       String pathname = data['video_path'];
+                      final uploadType = data['upload_type']?.toString();
+                      final isExternal = uploadType == '1';
 
-                      return CheckboxListTile(
+                      return ListTile(
+                        leading: Checkbox(
+                          value: _selectedMedia[pathname] ?? false,
+                          onChanged: isExternal
+                              ? null
+                              : (bool? value) {
+                                  setState(() {
+                                    _selectedMedia[pathname] = value ?? false;
+                                    if (value == true) {
+                                      videoFilenames.add(filename);
+                                    } else {
+                                      videoFilenames.remove(filename);
+                                    }
+                                    _isSelected =
+                                        _selectedMedia.containsValue(true);
+                                  });
+                                  AppDebug().printDebug(
+                                      msg: '${_selectedMedia[pathname]}');
+                                },
+                        ),
                         title: Text(filename),
-                        value: _selectedMedia[pathname] ?? false,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _selectedMedia[pathname] = value ?? false;
-                            if (value == true) {
-                              videoFilenames.add(filename);
-                            } else {
-                              videoFilenames.remove(filename);
-                            }
-                            _isSelected = _selectedMedia.containsValue(true);
-                          });
-                          AppDebug()
-                              .printDebug(msg: '${_selectedMedia[pathname]}');
-                        },
-                        controlAffinity: ListTileControlAffinity.trailing,
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.share,
+                                  color: AppColors.primary),
+                              onPressed: () =>
+                                  _shareMedia(data, filename, pathname),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),
@@ -461,6 +500,54 @@ class _DownloadModalState extends ConsumerState<DownloadModal> {
       return directory;
     } else {
       throw Exception('Unsupported platform');
+    }
+  }
+
+  Future<void> _shareMedia(dynamic data, String filename, String url) async {
+    final uploadType = data['upload_type']?.toString();
+    final callSummary = ref.read(callSummaryDetailProvider);
+    final contact = callSummary.getInfoData['CONTACT'];
+    final cleanContact = (contact?.toString() ?? '').replaceAll(RegExp(r'[+\-\s]'), '');
+
+    if (uploadType == '1') {
+      // External Link (YouTube, etc): Open WhatsApp with Link
+      String encodedUrl = Uri.encodeComponent(url);
+      String whatsAppUrl = 'https://wa.me/$cleanContact?text=$encodedUrl';
+
+      if (await canLaunchUrlString(whatsAppUrl)) {
+        await launchUrlString(whatsAppUrl, mode: LaunchMode.externalApplication);
+      } else {
+        GlobalUtils.showFloatingMessage(context, 'Could not open WhatsApp');
+      }
+    } else {
+      // Direct File: Download and Share
+      showLoadingDialog(context);
+      try {
+        final response = await http.get(Uri.parse(url));
+        if (response.statusCode == 200) {
+          final directory = await getTemporaryDirectory();
+          final ext = mediaName == 'audio' ? 'mp3' : 'mp4';
+          final filePath = '${directory.path}/$filename.$ext';
+          final file = File(filePath);
+          await file.writeAsBytes(response.bodyBytes);
+
+          if (mounted) {
+            Navigator.pop(context); // Close loading dialog
+            final box = context.findRenderObject() as RenderBox?;
+            await Share.shareXFiles(
+              [XFile(filePath)],
+              sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+            );
+          }
+        } else {
+          if (mounted) Navigator.pop(context);
+          GlobalUtils.showFloatingMessage(context, 'Failed to download file');
+        }
+      } catch (e) {
+        if (mounted) Navigator.pop(context);
+        AppDebug().printDebug(msg: 'Error sharing file: $e');
+        GlobalUtils.showFloatingMessage(context, 'Error sharing file');
+      }
     }
   }
 }

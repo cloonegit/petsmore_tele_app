@@ -86,6 +86,8 @@ class _HomeState extends ConsumerState<Home> with WidgetsBindingObserver {
     Future.delayed(Duration(milliseconds: 300), () {
       if (userLogin == 'STAFF') {
         ref.read(bottomNavNotifierProvider.notifier).setIndex(1);
+      } else if (userLogin == 'TM' || userLogin == 'AM') {
+        ref.read(bottomNavNotifierProvider.notifier).setIndex(2);
       } else {
         ref.read(bottomNavNotifierProvider.notifier).setIndex(2);
       }
@@ -101,6 +103,8 @@ class _HomeState extends ConsumerState<Home> with WidgetsBindingObserver {
     Future.delayed(Duration(milliseconds: 300), () {
       if (userLogin == 'STAFF') {
         ref.read(bottomNavNotifierProvider.notifier).setIndex(1);
+      } else if (userLogin == 'TM' || userLogin == 'AM') {
+        ref.read(bottomNavNotifierProvider.notifier).setIndex(2);
       } else {
         ref.read(bottomNavNotifierProvider.notifier).setIndex(2);
       }

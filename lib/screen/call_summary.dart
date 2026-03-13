@@ -316,7 +316,6 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                 );
               },
               child: Container(
-                height: Adaptive.h(13),
                 width: Adaptive.w(50),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -331,7 +330,10 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                         Flexible(
                           child: Padding(
                             padding: EdgeInsets.only(
-                                left: Adaptive.w(4), top: Adaptive.h(1)),
+                                // left: Adaptive.w(4), top: Adaptive.h(1)
+                                left: Adaptive.w(4),
+                                top: Adaptive.h(1),
+                                right: Adaptive.w(15)),
                             child: Text(
                               currentItem['NAME'],
                               overflow: TextOverflow.ellipsis,
@@ -355,7 +357,9 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          left: Adaptive.w(4), right: Adaptive.w(4)),
+                          left: Adaptive.w(4),
+                          right: Adaptive.w(4),
+                          bottom: Adaptive.h(1.5)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -382,28 +386,28 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                               ),
                             ],
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Last Called',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              SizedBox(
-                                height: Adaptive.h(1),
-                              ),
-                              Text(
-                                currentItem['LAST_CALL_DATE'] ?? '-',
-                                style: TextStyle(
-                                    fontFamily: 'Poppins', fontSize: 12),
-                              ),
-                            ],
-                          ),
+                          // Column(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   crossAxisAlignment: CrossAxisAlignment.start,
+                          //   children: [
+                          //     const Text(
+                          //       'Last Called',
+                          //       style: TextStyle(
+                          //         fontFamily: 'Poppins',
+                          //         fontSize: 11,
+                          //         fontWeight: FontWeight.w500,
+                          //       ),
+                          //     ),
+                          //     SizedBox(
+                          //       height: Adaptive.h(1),
+                          //     ),
+                          //     Text(
+                          //       currentItem['LAST_CALL_DATE'] ?? '-',
+                          //       style: TextStyle(
+                          //           fontFamily: 'Poppins', fontSize: 12),
+                          //     ),
+                          //   ],
+                          // ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -436,6 +440,7 @@ class _CallSummaryState extends ConsumerState<CallSummary>
                               ),
                             ],
                           ),
+                          const SizedBox(), // Push to middle
                         ],
                       ),
                     ),

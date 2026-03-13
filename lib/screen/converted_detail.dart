@@ -194,6 +194,35 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
                                       Row(
                                         children: [
                                           Text(
+                                            'CAMPAIGN : ',
+                                            style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            (approachedDetails['CAMPAIGN'] !=
+                                                        null &&
+                                                    approachedDetails[
+                                                            'CAMPAIGN']
+                                                        .isNotEmpty)
+                                                ? approachedDetails['CAMPAIGN']
+                                                        [0]['name'] ??
+                                                    ''
+                                                : '',
+                                            style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                color: AppColors.primary,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: Adaptive.h(1)),
+                                      Row(
+                                        children: [
+                                          Text(
                                             'ID : ',
                                             style: TextStyle(
                                                 fontFamily: 'Poppins',

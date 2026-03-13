@@ -40,7 +40,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
 
     return userLogin == ""
         ? Login()
-        : userLogin == 'STAFF'
+        : (userLogin == 'STAFF')
             ? staffUser()
             : TMUser();
   }
@@ -206,7 +206,7 @@ class _BottomNavBarWrapperState extends ConsumerState<BottomNavBarWrapper> {
               ref.read(initialTabIndexProvider.notifier).state = 0;
               ref.read(callSummaryProvider.notifier).setCampaignFilter('ALL');
             }
-          } else if (userLogin == 'TM') {
+          } else if (userLogin == 'TM' || userLogin == 'AM') {
             if (index == 2) {
               ref.read(initialTabIndexProvider.notifier).state = 0;
               ref.read(callSummaryProvider.notifier).setCampaignFilter('ALL');
@@ -218,7 +218,7 @@ class _BottomNavBarWrapperState extends ConsumerState<BottomNavBarWrapper> {
   }
 
   List<Widget> _buildNavBarChildren() {
-    if (userLogin == 'TM') {
+    if (userLogin == 'TM' || userLogin == 'AM') {
       return [
         Home(),
         Outlet(),

@@ -29,7 +29,7 @@ class _CallStatusDropdownState extends ConsumerState<CallStatusDropdown> {
   TextEditingController searchController = TextEditingController();
   String searchQuery = '';
   List<String> NoAnswer = ['Invalid Number', 'Wrong Number', 'No Pickup'];
-  List<String> MakePurchase = ['Payment via Tele Apps Link', 'Escalate to TQM'];
+  List<String> MakePurchase = ['Escalate to TQM'];
   List teleproductData = [];
   Map selection = {};
   bool ableCallStatus = false;

@@ -99,8 +99,24 @@ class HomeProvider extends ChangeNotifier {
       // Process and save data
       listTitle = responseData['LIST_TITLE'] ?? '';
       campaignTitle = responseData['CAMPAIGN_TITLE'] ?? '';
-      callStatusList = List<Map<String, dynamic>>.from(responseData['LIST']);
-      campaignList = List<Map<String, dynamic>>.from(responseData['CAMPAIGN']);
+
+      // Safely handle LIST and CAMPAIGN potentially not being an array
+      if (responseData['LIST'] is List) {
+        callStatusList = List<Map<String, dynamic>>.from(responseData['LIST']);
+      } else if (responseData['LIST'] is Map) {
+        callStatusList = [Map<String, dynamic>.from(responseData['LIST'])];
+      } else {
+        callStatusList = [];
+      }
+
+      if (responseData['CAMPAIGN'] is List) {
+        campaignList =
+            List<Map<String, dynamic>>.from(responseData['CAMPAIGN']);
+      } else if (responseData['CAMPAIGN'] is Map) {
+        campaignList = [Map<String, dynamic>.from(responseData['CAMPAIGN'])];
+      } else {
+        campaignList = [];
+      }
 
       // Save data to Shared Preferences
       await GetSharedPreferences().setStringData('list_title', listTitle);

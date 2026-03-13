@@ -239,7 +239,16 @@ class APIManager {
             AppDebug().printDebug(msg: 'Empty response body for $url');
             return {};
           }
-          responseJson = json.decode(response.body.toString());
+
+          String body = response.body.toString();
+          // backend sometimes returns PHP warnings/HTML before the actual JSON
+          // We find the first '{' and decode from there.
+          int jsonStartIndex = body.indexOf('{');
+          if (jsonStartIndex != -1 && jsonStartIndex > 0) {
+            body = body.substring(jsonStartIndex);
+          }
+
+          responseJson = json.decode(body);
           return responseJson;
         } catch (e) {
           AppDebug().printDebug(

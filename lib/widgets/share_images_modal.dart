@@ -1,5 +1,6 @@
 import 'package:petsmore_tele_app/config/global.dart';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -154,13 +155,16 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
   }
 
   Widget _buildShareToCustomerButton() {
+    String msg = Platform.isIOS 
+        ? 'Confirm to send this visual?\n\nImage will be copied to clipboard. Paste it in WhatsApp.'
+        : 'Confirm to send this visual?';
     return widget.imagesList.isNotEmpty
         ? Padding(
             padding: EdgeInsets.symmetric(horizontal: Adaptive.w(5)),
             child: CustomContainer(
               onPressed: () {
                 showCustomDialog(
-                    context, '', 'Confirm to send this visual?', 'OK', () {
+                    context, '', msg, 'OK', () {
                   _shareImage(widget.imagesList[_currentPage]);
                 }, cancel: 'Cancel');
               },
@@ -175,13 +179,16 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
   }
 
   Widget _buildShareAllButton() {
+    String msg = Platform.isIOS 
+        ? 'Confirm to send all visuals?\n\nImage will be copied to clipboard. Paste it in WhatsApp.'
+        : 'Confirm to send all visuals?';
     return widget.imagesList.length > 1
         ? Padding(
             padding: EdgeInsets.only(bottom: Adaptive.h(20)),
             child: CustomContainer(
               onPressed: () {
                 showCustomDialog(
-                    context, '', 'Confirm to send all visuals?', 'OK',
+                    context, '', msg, 'OK',
                     () async {
                   await _shareAllImages();
                 }, cancel: 'Cancel');
@@ -217,22 +224,25 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
         
         // Platform-specific sharing behavior
         if (Platform.isIOS) {
-          // iOS WhatsApp workaround: Copy caption to clipboard
-          // WhatsApp on iOS has a known bug where image+text causes blank preview
-          if (widget.text != null && widget.text!.isNotEmpty) {
-            await Clipboard.setData(ClipboardData(text: widget.text!));
-            if (mounted) {
-              GlobalUtils.showFloatingMessage(
-                  context, 'Caption copied to clipboard. Paste in WhatsApp.');
-            }
+          // iOS: Copy image to clipboard and open WhatsApp directly via wa.me link
+          final imageBytes = await imageFile.readAsBytes();
+          await Clipboard.setData(ClipboardData(text: ''));
+          // We need to use the platform channel to copy image to clipboard
+          // For now, copy image bytes to clipboard using the system pasteboard
+          await _copyImageToClipboard(imageBytes);
+
+          // Clean contact number: remove +, -, spaces
+          String cleanContact = (contact ?? '').replaceAll(RegExp(r'[+\-\s]'), '');
+          
+          // Build WhatsApp URL with phone and caption
+          String encodedText = Uri.encodeComponent(widget.text ?? '');
+          String whatsAppUrl = 'https://wa.me/$cleanContact?text=$encodedText';
+
+
+
+          if (await canLaunchUrlString(whatsAppUrl)) {
+            await launchUrlString(whatsAppUrl, mode: LaunchMode.externalApplication);
           }
-          // Share image WITHOUT text parameter to fix iOS WhatsApp blank preview
-          // Check if still mounted after async operations
-          if (!mounted) return;
-          final box = context.findRenderObject() as RenderBox?;
-          await Share.shareXFiles(
-              [XFile(imageFile.path, mimeType: 'image/jpeg')],
-              sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
         } else {
           // Android: Use share_whatsapp to directly open WhatsApp with contact
           final shareWhatsapp = ShareWhatsapp();
@@ -320,18 +330,22 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
         
         // Platform-specific sharing behavior
         if (Platform.isIOS) {
-          // iOS WhatsApp workaround: Copy caption to clipboard
-          // WhatsApp on iOS has a known bug where image+text causes blank preview
-          if (widget.text != null && widget.text!.isNotEmpty) {
-            await Clipboard.setData(ClipboardData(text: widget.text!));
-            if (mounted) {
-              GlobalUtils.showFloatingMessage(
-                  context, 'Caption copied to clipboard. Paste in WhatsApp.');
-            }
+          // iOS: Copy first/current image to clipboard and open WhatsApp directly
+          final firstImageBytes = await File(imageFiles.first.path).readAsBytes();
+          await _copyImageToClipboard(firstImageBytes);
+
+          // Clean contact number: remove +, -, spaces
+          String cleanContact = (contact ?? '').replaceAll(RegExp(r'[+\-\s]'), '');
+          
+          // Build WhatsApp URL with phone and caption
+          String encodedText = Uri.encodeComponent(widget.text ?? '');
+          String whatsAppUrl = 'https://wa.me/$cleanContact?text=$encodedText';
+
+
+
+          if (await canLaunchUrlString(whatsAppUrl)) {
+            await launchUrlString(whatsAppUrl, mode: LaunchMode.externalApplication);
           }
-          // Share images WITHOUT text parameter to fix iOS WhatsApp blank preview
-          await Share.shareXFiles(imageFiles,
-              sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
         } else {
           // Android: Use share_whatsapp to directly open WhatsApp with contact
           // Note: share_whatsapp only supports single file, so share first image
@@ -349,6 +363,16 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
         GlobalUtils.showFloatingMessage(
             context, 'Error downloading or sharing image: $e');
       }
+    }
+  }
+
+  /// Copies image bytes to the iOS system pasteboard via a native MethodChannel.
+  Future<void> _copyImageToClipboard(Uint8List imageBytes) async {
+    const channel = MethodChannel('com.petsmore.tele/clipboard');
+    try {
+      await channel.invokeMethod('copyImageToClipboard', imageBytes);
+    } catch (e) {
+      AppDebug().printDebug(msg: 'Error copying image to clipboard: $e');
     }
   }
 }

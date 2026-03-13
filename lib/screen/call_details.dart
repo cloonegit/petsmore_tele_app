@@ -335,13 +335,11 @@ class _CallDetailsState extends ConsumerState<CallDetails>
                                       fontSize: 26,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                SizedBox(height: Adaptive.h(2)),
-                                _buildDetailRow(
-                                    data['GENDER'] ?? '-',
-                                    '|',
-                                    data['SENHENGAPP'].isNotEmpty
-                                        ? data['SENHENGAPP']
-                                        : 'Download Senheng App: NO'),
+                                if (data['GENDER'] != null &&
+                                    data['GENDER'].toString().isNotEmpty) ...[
+                                  SizedBox(height: Adaptive.h(2)),
+                                  _buildDetailRow(data['GENDER'], ''),
+                                ],
                                 SizedBox(height: Adaptive.h(2)),
                                 Text(
                                   data['CARDTYPE'] ?? '-',

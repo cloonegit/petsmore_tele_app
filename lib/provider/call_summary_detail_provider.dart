@@ -98,7 +98,7 @@ class CallSummaryDetailProvider extends ChangeNotifier {
   Map get getSelection => selection;
 
   void _setFailure(failure) {
-    _failure = failure;
+    _failure = failure?.toString();
     AppDebug().printDebug(msg: 'call summary provider failure: $failure');
     notifyListeners();
   }

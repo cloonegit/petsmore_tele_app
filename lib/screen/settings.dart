@@ -183,7 +183,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
       if (bottomIndex != 2 && isEditing == true) {
         resetToOriginalData();
       }
-    } else if (userLogin == 'TM') {
+    } else if (userLogin == 'TM' || userLogin == 'AM') {
       if (bottomIndex != 4 && isEditing == true) {
         resetToOriginalData();
       }
@@ -196,15 +196,19 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
       },
       child: Scaffold(
         appBar: Appbar(title: isEditing ? 'EDITING INFO' : 'SETTING'),
-        body: userData.isEmpty || isLoading == true
-            ? Center(
-                child: CircularProgressIndicator.adaptive(
-                  strokeWidth: 5,
-                  strokeAlign: CircularProgressIndicator.strokeAlignCenter,
-                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-                ),
-              )
-            : RefreshIndicator(
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          behavior: HitTestBehavior.translucent,
+          child: userData.isEmpty || isLoading == true
+              ? Center(
+                  child: CircularProgressIndicator.adaptive(
+                    strokeWidth: 5,
+                    strokeAlign: CircularProgressIndicator.strokeAlignCenter,
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(AppColors.primary),
+                  ),
+                )
+              : RefreshIndicator(
                 color: AppColors.primary,
                 backgroundColor: Colors.white,
                 onRefresh: _refreshData,
@@ -351,7 +355,8 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                     ],
                   ),
                 ),
-              ),
+          ),
+        ),
       ),
     );
   }
