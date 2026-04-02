@@ -35,12 +35,12 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    userLogin = userLoginService.getUserLogin() ?? '';
-    AppDebug().printDebug(msg: 'userlogin bottom nav bar 2:$userLogin');
+    final userRole = ref.watch(userRoleProvider).userLogin;
+    AppDebug().printDebug(msg: 'userlogin bottom nav bar 2:$userRole');
 
-    return userLogin == ""
-        ? Login()
-        : (userLogin == 'STAFF')
+    return userRole == ""
+        ? const Login()
+        : (userRole == 'STAFF')
             ? staffUser()
             : TMUser();
   }
@@ -147,7 +147,9 @@ class _BottomNavBarWrapperState extends ConsumerState<BottomNavBarWrapper> {
   @override
   void initState() {
     super.initState();
-    userLogin = userLoginService.getUserLogin() ?? '';
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(settingProvider).refreshUserRole();
+    });
   }
 
   @override
@@ -170,7 +172,8 @@ class _BottomNavBarWrapperState extends ConsumerState<BottomNavBarWrapper> {
   @override
   Widget build(BuildContext context) {
     final selectedIndex = ref.watch(bottomNavNotifierProvider).index;
-    AppDebug().printDebug(msg: 'getIndexFromProvider:$selectedIndex');
+    final userRole = ref.watch(userRoleProvider).userLogin;
+    AppDebug().printDebug(msg: 'getIndexFromProvider:$selectedIndex, role:$userRole');
 
     ref.listen<BottomNavState>(bottomNavNotifierProvider, (previous, next) {
       if (previous?.index != next.index) {
@@ -201,24 +204,27 @@ class _BottomNavBarWrapperState extends ConsumerState<BottomNavBarWrapper> {
           int indextab = ref.read(initialTabIndexProvider);
           AppDebug().printDebug(msg: 'index tab:$indextab');
 
-          if (userLogin == 'STAFF') {
+          final userRole = ref.read(userRoleProvider).userLogin;
+          if (userRole == 'STAFF') {
             if (index == 1) {
               ref.read(initialTabIndexProvider.notifier).state = 0;
               ref.read(callSummaryProvider.notifier).setCampaignFilter('ALL');
             }
-          } else if (userLogin == 'TM' || userLogin == 'AM') {
+          } else if (userRole == 'TM' || userRole == 'AM') {
             if (index == 2) {
               ref.read(initialTabIndexProvider.notifier).state = 0;
               ref.read(callSummaryProvider.notifier).setCampaignFilter('ALL');
             }
           }
+          ref.read(settingProvider).refreshUserRole();
         },
       ),
     );
   }
 
   List<Widget> _buildNavBarChildren() {
-    if (userLogin == 'TM' || userLogin == 'AM') {
+    final userRole = ref.read(userRoleProvider).userLogin;
+    if (userRole == 'TM' || userRole == 'AM') {
       return [
         Home(),
         Outlet(),
@@ -226,7 +232,7 @@ class _BottomNavBarWrapperState extends ConsumerState<BottomNavBarWrapper> {
         Converted(),
         Setting(),
       ];
-    } else if (userLogin == 'STAFF') {
+    } else if (userRole == 'STAFF') {
       return [
         Home(),
         CallSummary(),

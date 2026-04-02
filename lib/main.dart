@@ -63,6 +63,8 @@ final telemarketingCampaignAssignProvider =
 final settingProvider = ChangeNotifierProvider((ref) => SettingProvider());
 final convertedProvider = ChangeNotifierProvider((ref) => ConvertedProvider());
 final searchProvider = ChangeNotifierProvider((ref) => SearchProvider());
+final userRoleProvider =
+    ChangeNotifierProvider((ref) => getItSetup.getIt<getItSetup.UserLoginService>());
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

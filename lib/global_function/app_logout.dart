@@ -4,6 +4,7 @@ import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
 import 'package:petsmore_tele_app/main.dart';
 
 import 'package:petsmore_tele_app/screen/login.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
 import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
 
 class AppLogout {
@@ -15,6 +16,7 @@ class AppLogout {
     await ref.read(homeProvider).clearData();
     await ref.read(loginProvider).clearData();
     await ref.read(settingProvider).clearData();
+    getIt<UserLoginService>().setUserLogin('');
     String userLogin = await GetSharedPreferences().getUserPosition();
     AppDebug().printDebug(msg: 'userLogin in logout:$userLogin');
     // Navigator.popAndPushNamed(context, '/login');

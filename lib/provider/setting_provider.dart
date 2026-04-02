@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:petsmore_tele_app/api/settings_api.dart';
-
+import 'package:petsmore_tele_app/api/staff_api.dart';
+import 'package:get_it/get_it.dart';
 import 'package:petsmore_tele_app/global_function/app_debug_print.dart';
+import 'package:petsmore_tele_app/services/get_it.dart';
 import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
 
 class SettingProvider extends ChangeNotifier {
@@ -62,7 +64,7 @@ class SettingProvider extends ChangeNotifier {
     AppDebug().printDebug(msg: 'setting provider res: $responseData');
 
     if (responseData != null && responseData.isNotEmpty && responseData['status'] == '1') {
-      infoData = responseData['INFO'];
+      infoData = responseData['INFO'] ?? {};
       notifyListeners();
     } else {
       AppDebug().printDebug(msg: 'setting provider status 0: $responseData');
@@ -109,6 +111,31 @@ class SettingProvider extends ChangeNotifier {
       return responseData['status_message'];
     } else {
       AppDebug().printDebug(msg: 'setting provider status 0: $responseData');
+    }
+  }
+
+  Future<void> refreshUserRole() async {
+    try {
+      String staffcode = await GetSharedPreferences().getuserCode();
+      if (staffcode.isEmpty) return;
+
+      Map res = await StaffAPI().fetchStaffDetail(staffcode);
+      if (res['status'] == '1' && res['LIST'] != null) {
+        String newPosition = res['LIST']['POSITION'] ?? '';
+        if (newPosition.isNotEmpty) {
+          await GetSharedPreferences().setUserInfo(
+            userPosition: newPosition,
+            userID: res['LIST']['ID'],
+            userCode: res['LIST']['CODE'],
+            userName: res['LIST']['NAME'],
+            userHQStaff: res['LIST']['HQSTAFF'],
+          );
+          getIt<UserLoginService>().setUserLogin(newPosition);
+          AppDebug().printDebug(msg: 'Role refreshed: $newPosition');
+        }
+      }
+    } catch (e) {
+      AppDebug().printDebug(msg: 'Error refreshing role: $e');
     }
   }
 }

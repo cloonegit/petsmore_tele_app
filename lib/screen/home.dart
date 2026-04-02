@@ -60,6 +60,7 @@ class _HomeState extends ConsumerState<Home> with WidgetsBindingObserver {
   Future<void> _refreshData() async {
     try {
       fetchData();
+      await ref.read(settingProvider).refreshUserRole();
       AppDebug().printDebug(msg: 'Data Refresh Successful');
     } catch (e) {
       AppDebug().printDebug(msg: 'Error during data refresh: $e');

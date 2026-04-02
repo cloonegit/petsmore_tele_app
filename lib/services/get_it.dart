@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -33,12 +34,15 @@ class OpenDialogService {
   }
 }
 
-class UserLoginService {
+class UserLoginService extends ChangeNotifier {
   String isUserLogin = '';
   String get userLogin => isUserLogin;
 
   void setUserLogin(String userLogin) {
-    isUserLogin = userLogin;
+    if (isUserLogin != userLogin) {
+      isUserLogin = userLogin;
+      notifyListeners();
+    }
   }
 
   String? getUserLogin() {

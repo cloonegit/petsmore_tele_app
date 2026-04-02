@@ -34,4 +34,5 @@ class GlobalAPI {
   String convertedApprdDetl = '$apidomain/tele_converted_call_detail.php';
   String convertedApprdSubt =
       '$apidomain/tele_converted_call_detail_submit.php';
+  String staffDetail = '$apidomain/staff_detail.php';
 }

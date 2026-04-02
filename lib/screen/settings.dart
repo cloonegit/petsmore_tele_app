@@ -96,6 +96,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
   Future<void> _refreshData() async {
     try {
       fetchData();
+      await ref.read(settingProvider).refreshUserRole();
       AppDebug().printDebug(msg: 'Data Refresh Successful');
     } catch (e) {
       AppDebug().printDebug(msg: 'Error during data refresh: $e');
@@ -126,7 +127,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
       if (userData.isNotEmpty) assignTextEditing();
       final infoData = ref.read(settingProvider).getInfoData;
       if (infoData.containsKey('PICTURE')) {
-        base64ImageString = infoData['PICTURE']['VALUE'] ?? '';
+        base64ImageString = infoData['PICTURE']?['VALUE'] ?? '';
       } else {
         base64ImageString = '';
       }
@@ -164,13 +165,13 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
 
   assignTextEditing() {
     staffCodeController =
-        TextEditingController(text: userData['CODE']['VALUE']);
+        TextEditingController(text: userData['CODE']?['VALUE'] ?? '');
     contactController =
-        TextEditingController(text: userData['CONTACT']['VALUE']);
+        TextEditingController(text: userData['CONTACT']?['VALUE'] ?? '');
     outletAddressController =
-        TextEditingController(text: userData['OUTLET']['VALUE']);
+        TextEditingController(text: userData['OUTLET']?['VALUE'] ?? '');
     outletContactController =
-        TextEditingController(text: userData['OUTLET_CONTACT']['VALUE']);
+        TextEditingController(text: userData['OUTLET_CONTACT']?['VALUE'] ?? '');
     editedData = Map.from(originalData);
   }
 
@@ -304,7 +305,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                                   top: Adaptive.h(2),
                                   bottom: Adaptive.h(2)),
                               child: Text(
-                                userData['NAME']['VALUE'],
+                                userData['NAME']?['VALUE'] ?? '',
                                 maxLines: 3,
                                 style: TextStyle(
                                     fontFamily: 'Poppins',
@@ -332,23 +333,23 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
                           width: Adaptive.w(90),
                           child: Column(
                             children: [
-                              buildText('Staff Code', userData['CODE']['VALUE'],
-                                  editable: false,
-                                  controller: staffCodeController),
-                              buildHorizontalLine(),
-                              buildText('Contact', userData['CONTACT']['VALUE'],
-                                  editable: isEditing,
-                                  controller: contactController),
-                              buildHorizontalLine(),
-                              buildText(
-                                  'Outlet Address', userData['OUTLET']['VALUE'],
-                                  editable: false,
-                                  controller: outletAddressController),
-                              buildHorizontalLine(),
-                              buildText('Outlet Contact',
-                                  userData['OUTLET_CONTACT']['VALUE'],
-                                  editable: isEditing,
-                                  controller: outletContactController),
+                               buildText('Staff Code', userData['CODE']?['VALUE'] ?? '',
+                                   editable: false,
+                                   controller: staffCodeController),
+                               buildHorizontalLine(),
+                               buildText('Contact', userData['CONTACT']?['VALUE'] ?? '',
+                                   editable: isEditing,
+                                   controller: contactController),
+                               buildHorizontalLine(),
+                               buildText(
+                                   'Outlet Address', userData['OUTLET']?['VALUE'] ?? '',
+                                   editable: false,
+                                   controller: outletAddressController),
+                               buildHorizontalLine(),
+                               buildText('Outlet Contact',
+                                   userData['OUTLET_CONTACT']?['VALUE'] ?? '',
+                                   editable: isEditing,
+                                   controller: outletContactController),
                             ],
                           )),
                       isEditingShow(ref),
@@ -369,7 +370,7 @@ class _SettingState extends ConsumerState<Setting> with WidgetsBindingObserver {
         }
       });
       final status = await ref.read(settingProvider).submitEditInfo(
-          userData['NAME']['VALUE'],
+          userData['NAME']?['VALUE'] ?? '',
           contactController.text,
           outletAddressController.text,
           outletContactController.text,
