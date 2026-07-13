@@ -575,7 +575,7 @@ class _CallDetailsState extends ConsumerState<CallDetails>
 
                 AppDebug().printDebug(msg: 'Selectedvalue:$decodedMessage');
                 String whatsAppUrl =
-                    'https://wa.me/${recipents.first.toString()}?text=${decodedMessage}';
+                    'https://wa.me/${recipents.first.toString()}?text=${Uri.encodeComponent(decodedMessage)}';
 
                 if (await canLaunchUrlString(whatsAppUrl)) {
                   await launchUrlString(whatsAppUrl,
@@ -934,7 +934,7 @@ class _CallDetailsState extends ConsumerState<CallDetails>
         // REJECTED_DETAIL
         case 'CALLLATER':
           // CALLL_ATER_DETAIL
-          await doSubmitRemarks();
+          await doSubmitRemarks(reasonType: '');
           break;
         case 'NOANS':
           // NO_ANSWER_DETAIL
@@ -964,7 +964,7 @@ class _CallDetailsState extends ConsumerState<CallDetails>
     //       'Please call 3 times before updating status', 'OK', () {});
     // }
     else {
-      await doSubmitRemarks();
+      await doSubmitRemarks(reasonType: reason);
     }
   }
 
@@ -1007,12 +1007,12 @@ class _CallDetailsState extends ConsumerState<CallDetails>
         showCustomDialog(context, '', selection['OFFLINE_MSG'], 'OK', () {});
       } else {
         callStatus = 'CONVERT';
-        await doSubmitRemarks();
+        await doSubmitRemarks(reasonType: reasonType);
       }
     }
   }
 
-  Future<void> doSubmitRemarks() async {
+  Future<void> doSubmitRemarks({required String reasonType}) async {
     setState(() {
       isLoadingRemarks = true;
       isLoading = false;
@@ -1020,7 +1020,7 @@ class _CallDetailsState extends ConsumerState<CallDetails>
     try {
       final res = await ref
           .read(callSummaryDetailProvider)
-          .submitRemarks(callStatus, remarksController.text);
+          .submitRemarks(callStatus, remarksController.text, reasonType);
 
       AppDebug().printDebug(msg: 'submit remarks:$res');
 

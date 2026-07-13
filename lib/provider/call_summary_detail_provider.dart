@@ -350,14 +350,14 @@ class CallSummaryDetailProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future submitRemarks(String callStatus, String remarksMsg,
+  Future submitRemarks(String callStatus, String remarksMsg, String reasonType,
       {bool? isFetching}) async {
     _setFailure(null);
     _isFetching = isFetching ?? true;
     notifyListeners();
 
     try {
-      await submitRemarksAPI(callStatus, remarksMsg);
+      await submitRemarksAPI(callStatus, remarksMsg, reasonType);
     } catch (f) {
       AppDebug().printDebug(msg: 'call summary provider f: ${f}');
       _setFailure(f);
@@ -370,16 +370,17 @@ class CallSummaryDetailProvider extends ChangeNotifier {
     return responseData;
   }
 
-  Future<void> submitRemarksAPI(String callStatus, String remarksMsg) async {
+  Future<void> submitRemarksAPI(
+      String callStatus, String remarksMsg, String reasonType) async {
     String staffcode = await GetSharedPreferences().getuserCode();
     String platformType = await GetSharedPreferences().getPlatform();
     if (getCid != '' || getCid.isNotEmpty) {
       AppDebug().printDebug(
           msg:
-              'details in submitRemarksAPI: $callStatus, $remarksMsg ,$getCid');
+              'details in submitRemarksAPI: $callStatus, $remarksMsg ,$getCid, $reasonType');
 
       responseData = await CallSummaryAPI().submitRemarks(
-          platformType, staffcode, getCid, callStatus, remarksMsg);
+          platformType, staffcode, getCid, callStatus, remarksMsg, reasonType);
       AppDebug().printDebug(msg: 'submit remarks  provider res: $responseData');
     } else {
       AppDebug().printDebug(msg: 'cid is emtpy in submit remarks API: ');

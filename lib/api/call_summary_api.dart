@@ -58,6 +58,7 @@ class CallSummaryAPI {
           .getAPICall(url)
           .timeout(Duration(seconds: GlobalAPI().timeout));
       AppDebug().printDebug(msg: 'whatsapp api response : $response');
+      AppDebug().printDebug(msg: 'Api url : $url');
     } catch (e) {
       AppDebug().printDebug(msg: 'whatsapp error $e');
       // getIt<ErrorMessageService>().setErrorMessage(e.toString());
@@ -205,9 +206,11 @@ class CallSummaryAPI {
   }
 
   Future<Map> submitRemarks(String platformType, String staffcode, String cid,
-      String callStatus, String remarksMsg) async {
+      String callStatus, String remarksMsg, String reasonType) async {
+    String formattedReasonType =
+        reasonType.toLowerCase().replaceAll(' ', '_');
     String url =
-        '${GlobalAPI().submitRemarks}?platform=${platformType}&staffcode=${staffcode}&cid=${cid}&callstatus=${callStatus}&remark=${remarksMsg}';
+        '${GlobalAPI().submitRemarks}?platform=${platformType}&staffcode=${staffcode}&cid=${cid}&callstatus=${callStatus}&remark=${remarksMsg}&reason_type=${formattedReasonType}';
 
     DateTime currentTime = DateTime.now();
     AppDebug().printDebug(msg: 'submitRemarks api body : $url   $currentTime');

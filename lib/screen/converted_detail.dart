@@ -690,7 +690,7 @@ class _ConvertedDetailState extends ConsumerState<ConvertedDetail> {
 
                   AppDebug().printDebug(msg: 'Selectedvalue:$decodedMessage');
                   String whatsAppUrl =
-                      'https://wa.me/${contact}?text=${decodedMessage}';
+                      'https://wa.me/${contact}?text=${Uri.encodeComponent(decodedMessage)}';
 
                   if (await canLaunchUrlString(whatsAppUrl)) {
                     await launchUrlString(whatsAppUrl);

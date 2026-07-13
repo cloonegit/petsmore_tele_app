@@ -246,10 +246,18 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
         } else {
           // Android: Use share_whatsapp to directly open WhatsApp with contact
           final shareWhatsapp = ShareWhatsapp();
+          
+          // Check which WhatsApp is installed
+          WhatsApp type = WhatsApp.standard;
+          if (await shareWhatsapp.installed(type: WhatsApp.business)) {
+            type = WhatsApp.business;
+          }
+          
           await shareWhatsapp.share(
             file: XFile(imageFile.path),
             phone: contact.toString(),
             text: widget.text,
+            type: type,
           );
         }
         // String sendMsg = Uri.encodeComponent(imageFile.path);
@@ -350,10 +358,18 @@ class _ShareImagesModalState extends ConsumerState<ShareImagesModal> {
           // Android: Use share_whatsapp to directly open WhatsApp with contact
           // Note: share_whatsapp only supports single file, so share first image
           final shareWhatsapp = ShareWhatsapp();
+          
+          // Check which WhatsApp is installed
+          WhatsApp type = WhatsApp.standard;
+          if (await shareWhatsapp.installed(type: WhatsApp.business)) {
+            type = WhatsApp.business;
+          }
+          
           await shareWhatsapp.share(
             file: imageFiles.first,
             phone: contact.toString(),
             text: widget.text,
+            type: type,
           );
         }
       }

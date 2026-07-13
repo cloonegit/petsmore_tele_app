@@ -183,11 +183,19 @@ class _BusinessCardModalState extends ConsumerState<BusinessCardModal> {
             AppDebug().printDebug(msg: 'Sharing on Android to contact: ${widget.contact}');
             // Android: Use share_whatsapp to directly open WhatsApp with contact
             final shareWhatsapp = ShareWhatsapp();
-            AppDebug().printDebug(msg: 'Calling shareWhatsapp.share with phone: ${widget.contact}');
+            
+            // Check which WhatsApp is installed
+            WhatsApp type = WhatsApp.standard;
+            if (await shareWhatsapp.installed(type: WhatsApp.business)) {
+              type = WhatsApp.business;
+            }
+            
+            AppDebug().printDebug(msg: 'Calling shareWhatsapp.share with phone: ${widget.contact} and type: $type');
             await shareWhatsapp.share(
               file: XFile(imageFile.path),
               phone: widget.contact.toString(),
               text: caption,
+              type: type,
             );
             AppDebug().printDebug(msg: 'Share call completed successfully.');
           }
