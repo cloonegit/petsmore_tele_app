@@ -33,6 +33,7 @@ import 'package:petsmore_tele_app/screen/telemarketer.dart';
 import 'package:petsmore_tele_app/services/get_it.dart' as getItSetup;
 import 'package:petsmore_tele_app/services/get_sharedpreferences.dart';
 import 'package:petsmore_tele_app/widgets/bottom_navigation_bar.dart';
+import 'package:petsmore_tele_app/config/env.dart';
 import 'package:petsmore_tele_app/config/global.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -63,10 +64,11 @@ final telemarketingCampaignAssignProvider =
 final settingProvider = ChangeNotifierProvider((ref) => SettingProvider());
 final convertedProvider = ChangeNotifierProvider((ref) => ConvertedProvider());
 final searchProvider = ChangeNotifierProvider((ref) => SearchProvider());
-final userRoleProvider =
-    ChangeNotifierProvider((ref) => getItSetup.getIt<getItSetup.UserLoginService>());
+final userRoleProvider = ChangeNotifierProvider(
+    (ref) => getItSetup.getIt<getItSetup.UserLoginService>());
 
 Future<void> main() async {
+  Env.validate();
   WidgetsFlutterBinding.ensureInitialized();
   await checkLoginStatus();
   checkPlatform();
@@ -118,7 +120,14 @@ class MyAppWithInitialRoute extends StatelessWidget {
       return MaterialApp(
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
-        title: 'Petsmore Telemarketing',
+        title: Env.appName,
+        builder: (context, child) => Env.isProduction
+            ? child!
+            : Banner(
+                message: 'STAGING',
+                location: BannerLocation.topEnd,
+                child: child!,
+              ),
         theme: ThemeData(
           // primarySwatch: Color(0xFFED1C24),
           scaffoldBackgroundColor: AppColors.scaffoldBackground,

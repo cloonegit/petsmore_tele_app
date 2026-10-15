@@ -1,0 +1,5 @@
+{
+  "FLAVOR": "staging",
+  "APP_NAME": "Petsmore Tele STG",
+  "API_BASE_URL": "https://staging.senwave.com.my/petsmore_telemarketing_api"
+}

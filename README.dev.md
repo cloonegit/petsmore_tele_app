@@ -28,7 +28,7 @@ UI constants are managed in `lib/config/global.dart`.
 
 ## 📡 API Documentation
 
-All API endpoints are centralized in `lib/api/global_api.dart`. The base URL is `https://tele.petsmore.com.my/api`.
+All API endpoints are centralized in `lib/api/global_api.dart`. The base URL comes from the flavor's env file (`env/staging.json` or `env/production.json`).
 
 ### 1. Authentication
 - **Login**: `GET /login.php`
@@ -114,22 +114,23 @@ flutter pub run flutter_native_splash:create
 ```
 
 ## 🔒 Environment Management
-The base URL is currently hardcoded in `lib/api/global_api.dart`:
-- **Current Domain:** `https://tele.petsmore.com.my/api`
-- **Legacy/Internal Domain:** `https://sys.senheng.com.my/shmanagement_apps/telemarketing/` (Commented out)
+There are two flavors: `staging` and `production`. Each has an env file in `env/` that sets the API base URL and app name. Always pass both `--flavor` and the matching env file:
+```bash
+flutter run --flavor staging --dart-define-from-file=env/staging.json
+flutter run --flavor production --dart-define-from-file=env/production.json
+```
+The app refuses to start if the flavor and env file don't match. See `ARCHITECTURE.md` → Environments and flavors.
 
 ## 📦 Building for Production
 
 ### Android
 ```bash
-flutter build apk --release
-# OR
-flutter build appbundle --release
+flutter build appbundle --release --flavor production --dart-define-from-file=env/production.json
 ```
 
 ### iOS
 ```bash
-flutter build ios --release
+flutter build ipa --release --flavor production --dart-define-from-file=env/production.json
 ```
 
 ## 🤝 Code Standards
