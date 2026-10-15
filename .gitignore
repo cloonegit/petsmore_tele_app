@@ -76,7 +76,27 @@ app.*.map.json
 **/macos/Flutter/ephemeral/
 
 # Environment variables
+# env/<flavor>.json holds public, non-secret build config and IS committed.
+# Anything secret must live on the server, never in the app or these files.
 .env
+.env.*
+*.env
+!.env.example
+
+# Signing material (never commit)
+key.properties
+*.jks
+*.keystore
+*.p12
+*.p8
+*.cer
+*.mobileprovision
+*.provisionprofile
+
+# Local tool output
+analysis_output.txt
+**/build/
+.fvm/
 
 # Testing
 coverage/
