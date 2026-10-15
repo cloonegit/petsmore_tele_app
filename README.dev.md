@@ -130,8 +130,47 @@ flutter build appbundle --release --flavor production --dart-define-from-file=en
 
 ### iOS
 ```bash
+flutter clean
+   flutter pub get
 flutter build ipa --release --flavor production --dart-define-from-file=env/production.json
 ```
+open ios/Runner.xcworkspace
+
+## 🧪 Releasing iOS Staging (TestFlight)
+
+The staging app is a separate app: bundle ID `com.petsmore.staging.telemarketings`, display name "Petsmore Telemarketing Staging", pointed at the staging API. It installs alongside production.
+
+### One-time setup
+1. **Apple Developer → Identifiers:** register the App ID `com.petsmore.staging.telemarketings` under team `3648KQBLF4`. Enable the same capabilities as the production app.
+2. **App Store Connect → Apps → +:** create a new app with that bundle ID (for example, "Petsmore Telemarketing Staging"). TestFlight needs an app record, even though this app is never submitted for review.
+3. **Signing:** the project uses automatic signing. Open `ios/Runner.xcworkspace`, select the **staging** scheme, go to **Runner → Signing & Capabilities**, and check that the `Release-staging` configuration resolves a profile for the staging bundle ID.
+
+### Each release
+1. **Bump the build number** in `pubspec.yaml` (`version: x.y.z+N`). `N` must be higher than the last staging upload. Staging and production keep separate build histories in App Store Connect.
+2. **Build the IPA** from the project root. Always use the Flutter CLI, so the staging env file is compiled in:
+   ```bash
+   flutter clean
+   flutter pub get
+   flutter build ipa --release --flavor staging --dart-define-from-file=env/staging.json
+   ```
+   This produces:
+   - Archive: `build/ios/archive/Runner.xcarchive`
+   - IPA: `build/ios/ipa/*.ipa`
+3. **Check the build before uploading:**
+   ```bash
+   plutil -extract CFBundleIdentifier raw build/ios/archive/Runner.xcarchive/Products/Applications/Runner.app/Info.plist
+   ```
+   The output must be `com.petsmore.staging.telemarketings`.
+4. **Upload** using one of these:
+   - **Xcode Organizer:** run `open build/ios/archive/Runner.xcarchive`, then click **Distribute App** → **App Store Connect** → **Upload**.
+   - **Transporter app:** drag in the `.ipa` from `build/ios/ipa/`.
+   - **Command line:** use an App Store Connect API key. Keep the `.p8` file in `~/.appstoreconnect/private_keys/`, never in this repo.
+     ```bash
+     xcrun altool --upload-app --type ios -f build/ios/ipa/*.ipa --apiKey <KEY_ID> --apiIssuer <ISSUER_ID>
+     ```
+5. **TestFlight:** once processing finishes (usually 5–30 minutes), add the build to your internal testing group. Testers will see the **STAGING** corner banner in the app.
+
+> ⚠️ Don't use **Product → Archive** directly in Xcode. Xcode reuses the dart-defines from the last `flutter` command (`ios/Flutter/Generated.xcconfig`), so the archive can contain the wrong env. The app's startup check would then crash it on launch. Always archive with `flutter build ipa` as shown above.
 
 ## 🤝 Code Standards
 - Use `AppColors` and `AppTextStyles` for all UI elements.
