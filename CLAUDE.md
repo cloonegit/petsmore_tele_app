@@ -67,7 +67,7 @@ The live role lives in `UserLoginService` (a GetIt `ChangeNotifier`), and the UI
 | API base URL | `https://staging.senwave.com.my/petsmore_telemarketing_api` | `https://tele.petsmore.com.my/api` |
 | iOS bundle ID | `com.petsmore.staging.telemarketings` | `com.petsmore.telemarketings` |
 | Android applicationId | `com.example.petsmore_tele_app.staging` | `com.example.petsmore_tele_app` |
-| App name | Petsmore Tele STG (plus a "STAGING" corner banner) | Petsmore Telemarketing |
+| App name | Petsmore Telemarketing Staging (plus a "STAGING" corner banner) | Petsmore Telemarketing |
 
 - `lib/config/env.dart` (`Env`) reads `FLAVOR`, `API_BASE_URL` and `APP_NAME` from the env file. `GlobalAPI.apidomain` is `Env.apiBaseUrl`, so **never hardcode or hand-edit the base URL**. To change a URL, or to add a new per-environment value, edit both env JSON files and `Env`.
 - `Env.validate()` runs first in `main()`. It throws if the env file is missing, if its `FLAVOR` doesn't match the native `--flavor` (`appFlavor`), or if the URL isn't https. Running with a mismatched or missing flavor/env file crashes on purpose.

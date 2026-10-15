@@ -53,7 +53,7 @@ android {
         staging {
             dimension "env"
             applicationIdSuffix ".staging"
-            resValue "string", "app_name", "Petsmore Tele STG"
+            resValue "string", "app_name", "Petsmore Telemarketing Staging"
         }
         production {
             dimension "env"
