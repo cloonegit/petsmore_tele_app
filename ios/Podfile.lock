@@ -4,17 +4,10 @@ PODS:
   - external_path (2.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - flutter_native_splash (2.4.3):
-    - Flutter
   - fluttertoast (0.0.2):
-    - Flutter
-  - image_picker_ios (0.0.1):
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
-  - path_provider_foundation (0.0.1):
-    - Flutter
-    - FlutterMacOS
   - permission_handler_apple (9.3.0):
     - Flutter
   - send_message (1.0.1):
@@ -23,27 +16,17 @@ PODS:
     - Flutter
   - share_whatsapp (0.0.1):
     - Flutter
-  - shared_preferences_foundation (0.0.1):
-    - Flutter
-    - FlutterMacOS
-  - url_launcher_ios (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - background_downloader (from `.symlinks/plugins/background_downloader/ios`)
   - external_path (from `.symlinks/plugins/external_path/ios`)
   - Flutter (from `Flutter`)
-  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
-  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - send_message (from `.symlinks/plugins/send_message/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - share_whatsapp (from `.symlinks/plugins/share_whatsapp/ios`)
-  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
-  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
   background_downloader:
@@ -52,16 +35,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/external_path/ios"
   Flutter:
     :path: Flutter
-  flutter_native_splash:
-    :path: ".symlinks/plugins/flutter_native_splash/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
-  image_picker_ios:
-    :path: ".symlinks/plugins/image_picker_ios/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
-  path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   send_message:
@@ -70,26 +47,17 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/share_plus/ios"
   share_whatsapp:
     :path: ".symlinks/plugins/share_whatsapp/ios"
-  shared_preferences_foundation:
-    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
-  url_launcher_ios:
-    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   background_downloader: b0572309a68d929c35941f0484e8ad7c65052228
   external_path: fd37c654b69a1336e33a2403f48383ae6100e443
-  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  flutter_native_splash: c32d145d68aeda5502d5f543ee38c192065986cf
+  Flutter: 71a624a5bc0c04062bf19101d501e466baf2fb47
   fluttertoast: 2c67e14dce98bbdb200df9e1acf610d7a6264ea1
-  image_picker_ios: 7fe1ff8e34c1790d6fff70a32484959f563a928a
   package_info_plus: 580e9a5f1b6ca5594e7c9ed5f92d1dfb2a66b5e1
-  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
   send_message: ea3c797b1f578c77b1f80ece13d2df06642350d2
   share_plus: 011d6fb4f9d2576b83179a3a5c5e323202cdabcf
   share_whatsapp: bf1db3e39306e1ead85cd0d4d0df735f9076a0ba
-  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
-  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
 
 PODFILE CHECKSUM: 1920d0fb6344a2e541b9569c4a459f69237858d5
 
